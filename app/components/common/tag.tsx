@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface TagProps {
   name: string;
@@ -6,7 +6,7 @@ export interface TagProps {
   className?: string;
 }
 
-export function Tag({ name, onClick, className = "" }: TagProps) {
+export function Tag({ name, onClick, className = '' }: TagProps) {
   const handleClick = () => {
     if (onClick) {
       onClick(name);

@@ -1,6 +1,4 @@
-import { Octokit } from "octokit";
-
-
+import { Octokit } from 'octokit';
 
 // GitHubへのアクセスを管理するサービス
 class GitHubService {
@@ -13,12 +11,12 @@ class GitHubService {
     const token = process.env.GITHUB_TOKEN;
 
     if (!token) {
-      throw new Error("GitHub token is not set in environment variables");
+      throw new Error('GitHub token is not set in environment variables');
     }
 
-    this.owner = process.env.GITHUB_REPO_OWNER || "";
-    this.repo = process.env.GITHUB_REPO_NAME || "";
-    this.contentPath = process.env.GITHUB_CONTENT_PATH || "";
+    this.owner = process.env.GITHUB_REPO_OWNER || '';
+    this.repo = process.env.GITHUB_REPO_NAME || '';
+    this.contentPath = process.env.GITHUB_CONTENT_PATH || '';
 
     this.octokit = new Octokit({
       auth: token,
@@ -38,13 +36,13 @@ class GitHubService {
 
       // レスポンスがファイル配列の場合
       if (Array.isArray(response.data)) {
-        return response.data
+        return response.data;
       }
 
       // 単一ファイルの場合は配列に変換
       return [response.data];
     } catch (error) {
-      console.error("Error fetching from GitHub:", error);
+      console.error('Error fetching from GitHub:', error);
       throw error;
     }
   }
@@ -54,7 +52,7 @@ class GitHubService {
    */
   async getMarkdownFiles(path: string = this.contentPath) {
     const files = await this.getContents(path);
-    return files.filter(file => file.type === "file" && file.name.endsWith(".md"));
+    return files.filter(file => file.type === 'file' && file.name.endsWith('.md'));
   }
 
   /**
@@ -69,13 +67,13 @@ class GitHubService {
       });
 
       if ('content' in response.data && 'encoding' in response.data) {
-        const { content, encoding } = response.data
+        const { content, encoding } = response.data;
         if (content && encoding === 'base64') {
           return Buffer.from(content, 'base64').toString('utf-8');
         }
       }
 
-      throw new Error("Invalid file content or encoding");
+      throw new Error('Invalid file content or encoding');
     } catch (error) {
       console.error(`Error fetching file content for ${path}:`, error);
       throw error;

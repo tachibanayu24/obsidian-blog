@@ -1,0 +1,21 @@
+# ビルド出力
+.cache
+build
+dist
+
+# 依存関係
+node_modules
+
+# ロックファイル
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 環境変数
+.env
+.env.*
+
+# その他
+.github
+.vscode
+.DS_Store

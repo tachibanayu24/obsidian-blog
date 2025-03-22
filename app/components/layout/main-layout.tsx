@@ -1,5 +1,5 @@
-import React from "react";
-import { Sidebar } from "./sidebar";
+import React from 'react';
+import { Sidebar } from './sidebar';
 
 export interface MainLayoutProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export function MainLayout({
   tags = [],
   selectedTag,
   onTagSelect,
-  onSearch
+  onSearch,
 }: MainLayoutProps) {
   return (
     <div className="flex min-h-screen bg-gray-900">
@@ -25,9 +25,7 @@ export function MainLayout({
         onSearch={onSearch}
       />
 
-      <main className="flex-grow p-4 md:p-8 pt-16 md:pt-8 overflow-auto">
-        {children}
-      </main>
+      <main className="flex-grow p-4 md:p-8 pt-16 md:pt-8 overflow-auto">{children}</main>
     </div>
   );
 }
@@ -37,9 +35,7 @@ export function Footer() {
     <footer className="py-6 px-4 md:px-8 border-t border-gray-800">
       <div className="flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0">
-          <p className="text-sm text-gray-400">
-            © 2024 Hokori note
-          </p>
+          <p className="text-sm text-gray-400">© 2024 Hokori note</p>
         </div>
 
         <div className="flex items-center space-x-4">

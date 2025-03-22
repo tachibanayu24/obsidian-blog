@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useLoaderData } from "react-router";
-import type { Route } from "./+types/home";
-import { MainLayout, BlogCard, Footer } from "../components";
-import type { Article } from "~/types";
-import { fetchObsidianArticles } from "~/services/github.server";
+import { useState } from 'react';
+import { useLoaderData } from 'react-router';
+import type { Route } from './+types/home';
+import { MainLayout, BlogCard, Footer } from '../components';
+import type { Article } from '~/types';
+import { fetchObsidianArticles } from '~/services/github.server';
 
 export async function loader() {
   try {
@@ -11,43 +11,44 @@ export async function loader() {
 
     if (!result.success) {
       return {
-        error: "GitHubからのデータ取得に失敗しました",
-        message: result.message
+        error: 'GitHubからのデータ取得に失敗しました',
+        message: result.message,
       };
     }
 
     return {
       files: result.articles,
       message: result.message,
-      success: true
+      success: true,
     };
   } catch (error) {
-    console.error("Error fetching from GitHub:", error);
+    console.error('Error fetching from GitHub:', error);
     return {
-      error: "GitHubからのデータ取得に失敗しました",
-      message: error instanceof Error ? error.message : "Unknown error",
-      success: false
+      error: 'GitHubからのデータ取得に失敗しました',
+      message: error instanceof Error ? error.message : 'Unknown error',
+      success: false,
     };
   }
 }
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Hokori note" },
-    { name: "description", content: "Obsidianのノートを公開するブログ" },
+    { title: 'Hokori note' },
+    { name: 'description', content: 'Obsidianのノートを公開するブログ' },
   ];
 }
 
 export function Home() {
-  const data = useLoaderData<typeof loader>()
+  const data = useLoaderData<typeof loader>();
 
   const [selectedTag, setSelectedTag] = useState<string | undefined>(undefined);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   // すべての記事から一意のタグを抽出
-  const extractedTags: string[] = data.files && data.files.length
-    ? Array.from(new Set(data.files.flatMap(file => file.tags || [])))
-    : [];
+  const extractedTags: string[] =
+    data.files && data.files.length
+      ? Array.from(new Set(data.files.flatMap(file => file.tags || [])))
+      : [];
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -63,9 +64,10 @@ export function Home() {
     const tagMatch = !selectedTag || file.tags.includes(selectedTag);
 
     // 検索クエリでフィルタリング
-    const queryMatch = !searchQuery ||
+    const queryMatch =
+      !searchQuery ||
       file.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (file.previewContent?.toLowerCase() || "").includes(searchQuery.toLowerCase());
+      (file.previewContent?.toLowerCase() || '').includes(searchQuery.toLowerCase());
 
     return tagMatch && queryMatch;
   });
@@ -91,15 +93,15 @@ export function Home() {
         <div>
           <h2 className="text-2xl font-bold mb-6">最新の記事</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredFiles.map((file) => (
+            {filteredFiles.map(file => (
               <BlogCard
                 key={file.sha || file.path}
                 title={file.title}
                 slug={file.slug}
                 tags={file.tags}
-                createDate={file.createDate || "不明"}
+                createDate={file.createDate || '不明'}
                 updateDate={file.updateDate}
-                previewContent={file.previewContent || "プレビューなし"}
+                previewContent={file.previewContent || 'プレビューなし'}
               />
             ))}
           </div>
