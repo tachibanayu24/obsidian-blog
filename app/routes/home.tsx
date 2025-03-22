@@ -1,21 +1,16 @@
 import { useLoaderData } from "react-router";
 import type { Route } from "./+types/home";
-import { getGithubService, type GitHubFile } from "../services/github";
+import { getGithubService } from "../services/github";
 
 export async function loader() {
-  console.log("サーバーサイドのローダー関数が呼ばれました");
-
   try {
-    // サーバーサイドのみで実行されるサービスを取得
     const githubService = getGithubService();
 
-    // Markdownファイルのみを取得
     const markdownFiles = await githubService.getMarkdownFiles();
     console.log("Markdownファイル:", markdownFiles);
 
     return {
       files: markdownFiles,
-      message: "APIからデータを取得しました"
     };
   } catch (error) {
     console.error("Error fetching from GitHub:", error);
@@ -34,12 +29,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export function Home() {
-  // クライアントサイドでのデータ読み込み
-  const data = useLoaderData() as {
-    files?: GitHubFile[];
-    error?: string;
-    message: string;
-  };
+  const data = useLoaderData<typeof loader>()
 
   return (
     <div className="p-4">

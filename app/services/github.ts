@@ -1,19 +1,6 @@
 import { Octokit } from "octokit";
 
-// GitHubサービスの型定義
-export interface GitHubFile {
-  name: string;
-  path: string;
-  sha: string;
-  size: number;
-  url: string;
-  html_url: string;
-  git_url: string;
-  download_url: string;
-  type: string;
-  content?: string;
-  encoding?: string;
-}
+
 
 // GitHubへのアクセスを管理するサービス
 class GitHubService {
@@ -41,7 +28,7 @@ class GitHubService {
   /**
    * 指定したパスのファイル一覧を取得
    */
-  async getContents(path: string = this.contentPath): Promise<GitHubFile[]> {
+  async getContents(path: string = this.contentPath) {
     try {
       const response = await this.octokit.rest.repos.getContent({
         owner: this.owner,
@@ -51,11 +38,11 @@ class GitHubService {
 
       // レスポンスがファイル配列の場合
       if (Array.isArray(response.data)) {
-        return response.data as GitHubFile[];
+        return response.data
       }
 
       // 単一ファイルの場合は配列に変換
-      return [response.data as GitHubFile];
+      return [response.data];
     } catch (error) {
       console.error("Error fetching from GitHub:", error);
       throw error;
@@ -65,7 +52,7 @@ class GitHubService {
   /**
    * Markdownファイルのみをフィルタリング
    */
-  async getMarkdownFiles(path: string = this.contentPath): Promise<GitHubFile[]> {
+  async getMarkdownFiles(path: string = this.contentPath) {
     const files = await this.getContents(path);
     return files.filter(file => file.type === "file" && file.name.endsWith(".md"));
   }
@@ -82,7 +69,7 @@ class GitHubService {
       });
 
       if ('content' in response.data && 'encoding' in response.data) {
-        const { content, encoding } = response.data as GitHubFile;
+        const { content, encoding } = response.data
         if (content && encoding === 'base64') {
           return Buffer.from(content, 'base64').toString('utf-8');
         }
@@ -100,10 +87,6 @@ class GitHubService {
 let githubService: GitHubService | null = null;
 
 export function getGithubService(): GitHubService {
-  if (typeof window !== 'undefined') {
-    throw new Error("GitHub service should only be used on the server side");
-  }
-
   if (!githubService) {
     githubService = new GitHubService();
   }
