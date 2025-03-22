@@ -1,15 +1,17 @@
-import type { Article, GitHubFile, ObsidianFrontMatter } from "~/types";
+import type { Article, GitHubFile, ObsidianFrontMatter } from '~/types';
 
 /**
  * マークダウン文字列からフロントマターとコンテンツを抽出する
  * @param markdown マークダウン文字列
  * @returns フロントマターとコンテンツのオブジェクト
  */
-export function extractFrontMatter(markdown: string): { frontMatter: ObsidianFrontMatter | null, content: string } {
+export function extractFrontMatter(markdown: string): {
+  frontMatter: ObsidianFrontMatter | null;
+  content: string;
+} {
   // フロントマターが存在するか確認（---で囲まれたYAML形式のブロック）
   const frontMatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
   const match = markdown.match(frontMatterRegex);
-
 
   if (!match) {
     // フロントマターが見つからない場合
@@ -27,7 +29,7 @@ export function extractFrontMatter(markdown: string): { frontMatter: ObsidianFro
 
     return { frontMatter, content };
   } catch (error) {
-    console.error("フロントマターのパースに失敗しました:", error);
+    console.error('フロントマターのパースに失敗しました:', error);
     return { frontMatter: null, content: markdown };
   }
 }
@@ -43,7 +45,7 @@ function parseFrontMatter(frontMatterString: string): ObsidianFrontMatter {
     tags: [],
     create_date: '',
     update_date: '',
-    uid: ''
+    uid: '',
   };
 
   try {
@@ -94,7 +96,7 @@ function parseFrontMatter(frontMatterString: string): ObsidianFrontMatter {
             frontMatter[key] = false;
           } else {
             // 文字列（引用符を削除）
-            frontMatter[key] = value.replace(/^["'](.*)["']$/, "$1");
+            frontMatter[key] = value.replace(/^["'](.*)["']$/, '$1');
           }
         } else {
           // 値がない場合は、次の行を確認して配列かどうか判断
@@ -122,7 +124,7 @@ function parseFrontMatter(frontMatterString: string): ObsidianFrontMatter {
  */
 export function extractPreviewContent(content: string, maxLength: number = 150): string {
   // 最初の段落または特定の長さを抽出
-  const text = content.split("\n\n")[0] || "";
+  const text = content.split('\n\n')[0] || '';
 
   // マークダウン記法を削除
   const plainText = text
@@ -133,7 +135,7 @@ export function extractPreviewContent(content: string, maxLength: number = 150):
 
   // 長すぎる場合は切り詰める
   if (plainText.length > maxLength) {
-    return plainText.substring(0, maxLength) + "...";
+    return plainText.substring(0, maxLength) + '...';
   }
 
   return plainText;
@@ -146,7 +148,6 @@ export function extractPreviewContent(content: string, maxLength: number = 150):
  * @returns 記事情報
  */
 export function parseObsidianArticle(file: GitHubFile, content: string): Article | null {
-
   // フロントマターとコンテンツを抽出
   const { frontMatter, content: markdownContent } = extractFrontMatter(content);
 
@@ -163,12 +164,13 @@ export function parseObsidianArticle(file: GitHubFile, content: string): Article
   }
 
   // タイトルを取得（フロントマターのtitleか、ファイル名）
-  const title = frontMatter.title || file.name.replace(".md", "");
+  const title = frontMatter.title || file.name.replace('.md', '');
 
   // スラッグを取得（aliasesの最初の値か、ファイル名をスラッグ化）
-  const slug = frontMatter.aliases && frontMatter.aliases.length > 0
-    ? frontMatter.aliases[0]
-    : file.name.replace(".md", "").toLowerCase().replace(/\s+/g, "-");
+  const slug =
+    frontMatter.aliases && frontMatter.aliases.length > 0
+      ? frontMatter.aliases[0]
+      : file.name.replace('.md', '').toLowerCase().replace(/\s+/g, '-');
 
   // タグを取得
   const tags = frontMatter.tags || [];
@@ -187,6 +189,6 @@ export function parseObsidianArticle(file: GitHubFile, content: string): Article
     uid: frontMatter.uid,
     content: markdownContent,
     sha: file.sha,
-    path: file.path
+    path: file.path,
   };
 }

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router";
-import { Tag } from "../common/tag";
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router';
+import { Tag } from '../common/tag';
 
 export interface SidebarProps {
   tags?: string[];
@@ -11,7 +11,7 @@ export interface SidebarProps {
 
 export function Sidebar({ tags = [], onTagSelect, selectedTag, onSearch }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
 
   const toggleSidebar = () => {
@@ -50,12 +50,34 @@ export function Sidebar({ tags = [], onTagSelect, selectedTag, onSearch }: Sideb
         onClick={toggleSidebar}
       >
         {isOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         )}
       </button>
@@ -65,7 +87,10 @@ export function Sidebar({ tags = [], onTagSelect, selectedTag, onSearch }: Sideb
         className={`fixed inset-y-0 left-0 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300 ease-in-out md:relative md:h-screen w-64 bg-gray-900 border-r border-gray-800 p-4 overflow-y-auto z-40`}
       >
         <div className="mb-8">
-          <Link to="/" className="text-2xl font-bold text-white hover:text-blue-400 transition-colors">
+          <Link
+            to="/"
+            className="text-2xl font-bold text-white hover:text-blue-400 transition-colors"
+          >
             Hokori note
           </Link>
         </div>

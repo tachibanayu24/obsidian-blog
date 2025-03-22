@@ -1,11 +1,11 @@
-import { Octokit } from "octokit";
-import type { Article, GitHubFile } from "~/types";
-import { parseObsidianArticle } from "~/utils/obsidian";
+import { Octokit } from 'octokit';
+import type { Article, GitHubFile } from '~/types';
+import { parseObsidianArticle } from '~/utils/obsidian';
 
 const GITHUB_REPO_OWNER = process.env.GITHUB_REPO_OWNER as string;
 const GITHUB_REPO_NAME = process.env.GITHUB_REPO_NAME as string;
 const GITHUB_CONTENT_PATH = process.env.GITHUB_CONTENT_PATH as string;
-const GITHUB_BRANCH = 'main'
+const GITHUB_BRANCH = 'main';
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
@@ -15,31 +15,37 @@ const octokit = new Octokit({
  * GitHubからObsidian記事のリストを取得する
  * @returns 記事のリスト
  */
-export async function fetchObsidianArticles(): Promise<{ articles: Article[], success: boolean, message: string }> {
+export async function fetchObsidianArticles(): Promise<{
+  articles: Article[];
+  success: boolean;
+  message: string;
+}> {
   try {
     // GitHubからファイル一覧を取得
     const files = await fetchArticles();
 
     // 各ファイルの内容を取得して記事オブジェクトに変換
-    const articlesPromises = files.map(async (file) => {
+    const articlesPromises = files.map(async file => {
       const content = await fetchFileContent(file);
       return parseObsidianArticle(file, content);
     });
 
     // 結果を待ち、nullでないものだけをフィルタリング
-    const articles = (await Promise.all(articlesPromises)).filter((article): article is Article => article !== null);
+    const articles = (await Promise.all(articlesPromises)).filter(
+      (article): article is Article => article !== null
+    );
 
     return {
       articles,
       success: true,
-      message: `${articles.length}件の記事を取得しました`
+      message: `${articles.length}件の記事を取得しました`,
     };
   } catch (error) {
-    console.error("記事の取得に失敗しました:", error);
+    console.error('記事の取得に失敗しました:', error);
     return {
       articles: [],
       success: false,
-      message: `記事の取得に失敗しました: ${error instanceof Error ? error.message : String(error)}`
+      message: `記事の取得に失敗しました: ${error instanceof Error ? error.message : String(error)}`,
     };
   }
 }
@@ -67,7 +73,7 @@ async function fetchArticles() {
   }
 
   // マークダウンファイルのみをフィルタリング
-  return data.filter(data => data.name.endsWith(".md"));
+  return data.filter(data => data.name.endsWith('.md'));
 }
 
 /**

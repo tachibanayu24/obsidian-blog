@@ -22,7 +22,7 @@ export interface GitHubFile {
   html_url: string | null;
   git_url: string | null;
   download_url: string | null;
-  type: "file" | "dir" | "symlink" | "submodule";
+  type: 'file' | 'dir' | 'symlink' | 'submodule';
   content?: string;
   encoding?: string;
 }
