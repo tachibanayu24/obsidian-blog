@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## [REQUIRED]概要
+PR の概要を簡潔に記載する
+
+## [REQUIRED]詳細
+PR の詳細を記載する。
+
+## [REQUIRED]期待する動作
+RPがどのような結果になっていればマージしてよいかをcheckboxで示す。
+
+## 参考
+PR の参考になりそうな情報を記載する。

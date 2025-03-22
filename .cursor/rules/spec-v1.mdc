@@ -1,0 +1,86 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: v1の仕様書
+alwaysApply: true
+---
+
+このファイルを参照したら `spec v1 loaded!` と出力する。
+このファイルは、本プロジェクトのv1の仕様書である。
+
+# 概要
+
+private repoで管理されたObsidianの特定のディレクトリ以下のノートをブログ記事として表示するWebアプリケーションである。
+
+# Obsidian側の運用
+
+- 対象ノート
+  - Obsidianのvaultの `_published/` 以下に、フラット保存されるノート
+  - 添付ファイルは `_config/attachment` に保存される
+  - プロパティには以下が必ず設定される
+    - aliases: string[]
+      - slugとして利用する
+      - アプリケーション側のpathとして利用する( `https://example.com/$slug` )
+      - 複数ある場合も、先頭の値のみを利用すれば良い
+    - tags: string[]
+      - アプリケーション側で表示したり、tagで絞り込んだりする
+    - create_date: string
+      - 作成日(YYYY-MM-DD)
+    - update_date: string
+      - 更新日(YYYY-MM-DD)
+    - uid: string
+      - ユニークID
+    - published: boolean
+      - trueの場合のみ公開される
+- フォーマット
+  - 一般的なobsidianの記法が採用される
+  - 添付ファイルは、 `![[image.png]]` のように示されている
+    - この場合、 `_config/attachment/image.png` に実体が保存されている
+  - ノート間のリンクは `[[ノートのタイトル|aliases-of-note]]` のように保存されるので、 `<a href="aliases-of-note">ノートのタイトル</a>` などとレンダリングする
+
+# 機能
+
+## 画面構成
+
+- 左サイドバー
+  - ページタイトル( `Hokori note` )
+  - tagやページタイトルによる検索フィールド
+  - tagでグルーピングされたページ一覧
+- メインコンテンツ
+- フッター
+  - Twitterアイコン(ユーザー名 `tachibanayu24` へリンク)
+  - GitHubアイコン(ユーザー名 `tachibanayu24` へリンク)
+  - Google Analyticsを利用に際する免責(必要なら)
+  
+ObsidianのGraphは表示不要。
+
+## UI要件
+
+- レスポンシブ対応が必要
+  - SPでは、サイドバーは開閉可能にし、初期状態で非表示にする
+- ダークテーマのみ用意する
+- 全体的に丸みを帯びたスタイリッシュかつ親しみの持てる意匠に統一する
+- サイドバーの開閉や画面遷移などで、必要に応じてアニメーションを定義する
+
+## トップページ
+
+- pathは `/`
+- メインコンテンツとして以下を表示する
+  - ブログの説明
+  - 更新記事を作成日の降順で、1カラムのカードスタイルで列挙
+    - タイトルは1行で省略する
+    - tagsと作成日時を表示する
+    - 本文は2行で省略する
+  
+## 記事ページ
+
+- pathは `/$aliases(slug)`
+- メインコンテンツとして以下を表示する
+  - タイトル
+  - シェアボタン(twitter, はてブ)
+  - 作成日
+  - 更新されている場合は更新日
+  - 本文
