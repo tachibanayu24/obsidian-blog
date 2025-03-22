@@ -1,26 +1,32 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router";
 import type { Route } from "./+types/home";
-import { getGithubService } from "../services/github";
 import { MainLayout, BlogCard, Footer } from "../components";
-import type { GitHubFile } from "../components/blog/blog-card";
+import type { Article } from "~/types";
+import { fetchObsidianArticles } from "~/services/github.server";
 
 export async function loader() {
   try {
-    const githubService = getGithubService();
+    const result = await fetchObsidianArticles();
 
-    const markdownFiles = await githubService.getMarkdownFiles();
-    console.log("Markdownファイル:", markdownFiles);
+    if (!result.success) {
+      return {
+        error: "GitHubからのデータ取得に失敗しました",
+        message: result.message
+      };
+    }
 
     return {
-      files: markdownFiles,
-      message: "APIからデータを取得しました"
+      files: result.articles,
+      message: result.message,
+      success: true
     };
   } catch (error) {
     console.error("Error fetching from GitHub:", error);
     return {
       error: "GitHubからのデータ取得に失敗しました",
-      message: error instanceof Error ? error.message : "Unknown error"
+      message: error instanceof Error ? error.message : "Unknown error",
+      success: false
     };
   }
 }
@@ -33,16 +39,15 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export function Home() {
-  const data = useLoaderData() as {
-    files?: GitHubFile[];
-    error?: string;
-    message: string;
-  };
+  const data = useLoaderData<typeof loader>()
 
   const [selectedTag, setSelectedTag] = useState<string | undefined>(undefined);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const extractedTags: string[] = ["プログラミング", "React", "TypeScript", "自己啓発", "趣味"];
+  // すべての記事から一意のタグを抽出
+  const extractedTags: string[] = data.files && data.files.length
+    ? Array.from(new Set(data.files.flatMap(file => file.tags || [])))
+    : [];
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -51,6 +56,19 @@ export function Home() {
   const handleTagSelect = (tag: string) => {
     setSelectedTag(selectedTag === tag ? undefined : tag);
   };
+
+  // タグとキーワードでフィルタリング
+  const filteredFiles = data.files?.filter(file => {
+    // タグでフィルタリング
+    const tagMatch = !selectedTag || file.tags.includes(selectedTag);
+
+    // 検索クエリでフィルタリング
+    const queryMatch = !searchQuery ||
+      file.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (file.previewContent?.toLowerCase() || "").includes(searchQuery.toLowerCase());
+
+    return tagMatch && queryMatch;
+  });
 
   return (
     <MainLayout
@@ -69,18 +87,19 @@ export function Home() {
           <p>{data.error}</p>
           <p>{data.message}</p>
         </div>
-      ) : data.files && data.files.length > 0 ? (
+      ) : filteredFiles && filteredFiles.length > 0 ? (
         <div>
           <h2 className="text-2xl font-bold mb-6">最新の記事</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.files.map((file) => (
+            {filteredFiles.map((file) => (
               <BlogCard
-                key={file.sha}
-                file={file}
-                tags={["プログラミング", "React"]}
-                createDate="2024-03-01"
-                updateDate="2024-03-20"
-                previewContent="これはObsidianから取得した記事のプレビューです。実際の内容はMarkdownから取得します。"
+                key={file.sha || file.path}
+                title={file.title}
+                slug={file.slug}
+                tags={file.tags}
+                createDate={file.createDate || "不明"}
+                updateDate={file.updateDate}
+                previewContent={file.previewContent || "プレビューなし"}
               />
             ))}
           </div>

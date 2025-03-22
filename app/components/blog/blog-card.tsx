@@ -1,44 +1,25 @@
 import React from "react";
 import { Link } from "react-router";
 import { Tag } from "../common/tag";
+import type { Article } from "~/types";
 
-// GitHubFileの型定義
-export interface GitHubFile {
-  name: string;
-  path: string;
-  sha: string;
-  size: number;
-  url: string;
-  html_url: string;
-  git_url: string;
-  download_url: string;
-  type: string;
-  content?: string;
-  encoding?: string;
-}
+type Props = Article
 
-export interface BlogCardProps {
-  file: GitHubFile;
-  tags?: string[];
-  createDate?: string;
-  updateDate?: string;
-  previewContent?: string;
-}
+export const BlogCard = ({ title, slug, tags, createDate, updateDate, previewContent }: Props) => {
 
-export function BlogCard({ file, tags = [], createDate, updateDate, previewContent }: BlogCardProps) {
-  const title = file.name.replace('.md', '');
-  const slug = file.name.replace('.md', '').toLowerCase();
 
   return (
     <div className="p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors">
       <Link to={`/${slug}`} className="block">
         <h3 className="text-lg font-semibold mb-2 text-white truncate">{title}</h3>
 
-        <div className="flex flex-wrap gap-2 mb-3">
+        {tags && <div className="flex flex-wrap gap-2 mb-3">
           {tags.map(tag => (
             <Tag key={tag} name={tag} />
           ))}
         </div>
+        }
+
 
         {createDate && (
           <div className="text-sm text-gray-400 mb-2">
