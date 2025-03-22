@@ -23,7 +23,7 @@ alwaysApply: true
   - 40文字以内
   - [Agent]とprefixに入れる
   - gitmojiをprefixに利用する
-    - e.g.: [Agent]:zap: xxロジックのパフォーマンス向上
+    - e.g.: [Agent] :zap: xxロジックのパフォーマンス向上
 
 # Pull Request(PR) 作成ルール
 
