@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 import type { Article, GitHubFile } from "~/types";
-import { parseObsidianArticle } from "~/utils/markdown";
+import { parseObsidianArticle } from "~/utils/obsidian";
 
 const GITHUB_REPO_OWNER = process.env.GITHUB_REPO_OWNER as string;
 const GITHUB_REPO_NAME = process.env.GITHUB_REPO_NAME as string;

@@ -29,6 +29,7 @@ export interface GitHubFile {
 
 // Obsidianのフロントマターの型
 export interface ObsidianFrontMatter {
+  title?: string;
   aliases: string[];
   tags: string[];
   create_date: string;

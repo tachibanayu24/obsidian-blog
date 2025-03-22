@@ -19,7 +19,7 @@ export function extractFrontMatter(markdown: string): { frontMatter: ObsidianFro
   try {
     // フロントマターをパースする
     const frontMatterString = match[1];
-console.log('frontMatterString', frontMatterString)
+
     const frontMatter = parseFrontMatter(frontMatterString);
 
     // コンテンツ部分を抽出（フロントマター以降）
@@ -45,32 +45,73 @@ function parseFrontMatter(frontMatterString: string): ObsidianFrontMatter {
     update_date: '',
     uid: ''
   };
-  const lines = frontMatterString.split("\n");
 
-  for (const line of lines) {
-    // 空行をスキップ
-    if (!line.trim()) continue;
+  try {
+    // 一般的なYAMLパースライブラリがない場合は、簡易的なYAMLパースを実装
+    const lines = frontMatterString.split('\n');
+    let currentKey = '';
+    const keyIndentMap = new Map<string, number>();
 
-    // キーと値を抽出（例: "title: My Blog Post"）
-    const colonIndex = line.indexOf(":");
-    if (colonIndex === -1) continue;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (!line.trim()) continue; // 空行をスキップ
 
-    const key = line.substring(0, colonIndex).trim();
-    let value = line.substring(colonIndex + 1).trim();
+      const indent = line.search(/\S|$/); // 先頭の空白の数
+      const trimmedLine = line.trim();
 
-    // 値が配列の場合（例: "[tag1, tag2]"）
-    if (value.startsWith("[") && value.endsWith("]")) {
-      value = value.substring(1, value.length - 1);
-      const array = value.split(",").map(item => item.trim().replace(/"/g, '').replace(/'/g, ''));
-      frontMatter[key] = array;
+      // リスト要素の場合
+      if (trimmedLine.startsWith('-')) {
+        const listItemValue = trimmedLine.slice(1).trim();
+
+        // 前のキーを親として扱う
+        if (currentKey && frontMatter[currentKey] !== undefined) {
+          if (!Array.isArray(frontMatter[currentKey])) {
+            frontMatter[currentKey] = [];
+          }
+          (frontMatter[currentKey] as any[]).push(listItemValue);
+        }
+        continue;
+      }
+
+      // キー：値のペア
+      const colonIndex = trimmedLine.indexOf(':');
+      if (colonIndex !== -1) {
+        const key = trimmedLine.slice(0, colonIndex).trim();
+        const value = trimmedLine.slice(colonIndex + 1).trim();
+
+        // インデントレベルを記録
+        keyIndentMap.set(key, indent);
+
+        // 親キーを設定
+        currentKey = key;
+
+        // 値がある場合は設定
+        if (value) {
+          // 真偽値の処理
+          if (value.toLowerCase() === 'true') {
+            frontMatter[key] = true;
+          } else if (value.toLowerCase() === 'false') {
+            frontMatter[key] = false;
+          } else {
+            // 文字列（引用符を削除）
+            frontMatter[key] = value.replace(/^["'](.*)["']$/, "$1");
+          }
+        } else {
+          // 値がない場合は、次の行を確認して配列かどうか判断
+          if (i + 1 < lines.length && lines[i + 1].trim().startsWith('-')) {
+            frontMatter[key] = [];
+          } else {
+            frontMatter[key] = '';
+          }
+        }
+      }
     }
-    // 値が文字列の場合（引用符を削除）
-    else {
-      frontMatter[key] = value.replace(/^["'](.*)["']$/, "$1");
-    }
+
+    return frontMatter;
+  } catch (error) {
+    console.error('YAMLのパースに失敗しました:', error);
+    return frontMatter; // 基本値を返す
   }
-
-  return frontMatter;
 }
 
 /**
