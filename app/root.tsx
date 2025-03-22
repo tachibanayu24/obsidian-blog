@@ -23,6 +23,11 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+// サーバーサイドレンダリングとクライアントサイドの整合性を保つためのフラグ
+export const handle = {
+  hydrate: true,
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className="dark">
