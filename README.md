@@ -41,6 +41,26 @@ npm run dev
 
 アプリケーションは `http://localhost:5173` で利用できます。
 
+### コードフォーマット
+
+このプロジェクトではコードの一貫性を保つために Prettier を使用しています。
+
+```bash
+# すべてのファイルをフォーマット
+npm run format
+
+# フォーマットチェックのみ実行
+npm run format:check
+```
+
+#### エディタ設定
+
+VSCode を使用している場合は、以下の拡張機能をインストールすることをお勧めします：
+
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+`.vscode/settings.json` で保存時に自動フォーマットが有効になっています。
+
 ### ビルド
 
 ```bash
