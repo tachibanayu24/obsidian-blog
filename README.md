@@ -1,87 +1,64 @@
-# Welcome to React Router!
+# Hokori note
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Obsidian のノートをブログとして公開するための Web アプリケーションです。
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## 概要
 
-## Features
+このプロジェクトは、Obsidian の特定ディレクトリ下のノートをブログとして公開するためのシンプルなアプリケーションです。Markdown 形式で書かれたノートを美しく表示し、タグによる整理や検索機能を提供します。
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## 機能
 
-## Getting Started
+- 📝 Obsidian ノートのブログ形式での表示
+- 🔍 タグとタイトルによる検索
+- 🌙 ダークテーマのみのシンプルな UI
+- 📱 レスポンシブデザイン
+- 🔗 ノート間のリンク対応
 
-### Installation
+## 技術スタック
 
-Install the dependencies:
+- React + React Router 7
+- Tailwind CSS
+- TypeScript
+
+## 開発環境
+
+### 必要条件
+
+- Node.js 18 以上
+- npm または yarn
+
+### インストール
 
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
+### 開発サーバーの起動
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+アプリケーションは `http://localhost:5173` で利用できます。
 
-## Building for Production
-
-Create a production build:
+### ビルド
 
 ```bash
 npm run build
 ```
 
-## Deployment
+## Obsidian の設定
 
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+- `_published/` ディレクトリ以下のノートが公開対象となります
+- 添付ファイルは `_config/attachment` に保存してください
+- 各ノートには以下のプロパティを設定してください:
+  - aliases: slug（URL）として使用されます
+  - tags: ブログのタグとなります
+  - create_date: 作成日 (YYYY-MM-DD)
+  - update_date: 更新日 (YYYY-MM-DD)
+  - uid: ユニーク ID
+  - published: true の場合のみ公開されます
 
 ---
 
-Built with ❤️ using React Router.
+© 2024 Hokori note
