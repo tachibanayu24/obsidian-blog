@@ -4,12 +4,9 @@ globs:
 alwaysApply: true
 ---
 ---
-description: v1の仕様書
+description: v1の仕様書（更新版）
 alwaysApply: true
 ---
-
-このファイルを参照したら `spec v1 loaded!` と出力する。
-このファイルは、本プロジェクトのv1の仕様書である。
 
 # 概要
 
@@ -84,3 +81,54 @@ ObsidianのGraphは表示不要。
   - 作成日
   - 更新されている場合は更新日
   - 本文
+
+## SEO最適化
+
+- メタデータの最適化
+  - 適切なtitleとdescriptionの設定
+  - OGP（Open Graph Protocol）タグの実装
+  - Twitter Card対応
+- SSR/SSG対応
+  - React Router 7のSSR機能を活用
+  - 静的サイト生成（SSG）とプリレンダリングの設定
+  - 動的ルートのプリレンダリング対応
+- 構造化データ
+  - BlogPosting型のSchema.orgマークアップを実装
+- その他
+  - サイトマップ自動生成機能
+  - robots.txtの適切な設定
+
+## SNSシェア最適化
+
+- OGP画像の動的生成
+  - 記事内容を基にAIによる画像生成
+  - 記事タイトルとブログ名を画像に重ねて表示
+  - Edge/Cloudflare Workersを活用した実装
+  - 生成画像のキャッシュ戦略
+- ソーシャルシェアボタン
+  - Twitter、Facebook、はてなブックマークなど
+
+## パフォーマンス最適化
+
+- GitHub APIデータのキャッシュ戦略
+- 画像の最適化
+- コンポーネントの遅延読み込み
+- Core Web Vitalsの最適化
+
+# 技術仕様
+
+## マークダウンパース処理
+
+- YAMLフロントマターの解析
+  - インデント付きの複雑な構造にも対応
+  - エラー処理の強化
+- Obsidian記法のHTML変換
+  - ノートリンク（`[[ノートのタイトル|aliases]]`）
+  - 添付ファイル（`![[image.png]]`）
+
+## アーキテクチャ
+
+- React Router 7を活用したSSR/SSG対応
+- データフェッチ戦略
+  - ビルド時のデータ取得
+  - 定期的な再ビルドによる最新化
