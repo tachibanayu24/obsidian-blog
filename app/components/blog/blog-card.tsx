@@ -3,9 +3,14 @@ import { Link } from 'react-router';
 import { Tag } from '../common/tag';
 import type { Article } from '~/types';
 
-type Props = Article;
+interface BlogCardProps {
+  article: Article;
+  onTagClick?: (tag: string) => void;
+}
 
-export const BlogCard = ({ title, slug, tags, createDate, updateDate, previewContent }: Props) => {
+export const BlogCard = ({ article, onTagClick }: BlogCardProps) => {
+  const { title, slug, tags, createDate, updateDate, previewContent } = article;
+
   return (
     <div className="p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors">
       <Link to={`/${slug}`} className="block">
@@ -14,7 +19,7 @@ export const BlogCard = ({ title, slug, tags, createDate, updateDate, previewCon
         {tags && (
           <div className="flex flex-wrap gap-2 mb-3">
             {tags.map(tag => (
-              <Tag key={tag} name={tag} />
+              <Tag key={tag} name={tag} onClick={onTagClick ? () => onTagClick(tag) : undefined} />
             ))}
           </div>
         )}
