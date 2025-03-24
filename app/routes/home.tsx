@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router';
 import type { Route } from './+types/home';
 import { MainLayout, BlogCard, Footer } from '../components';
 import type { Article } from '~/types';
-import { fetchObsidianArticles } from '~/services/github.server';
+import { fetchObsidianArticles } from '~/server/github.server';
 
 export async function loader() {
   try {
