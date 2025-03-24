@@ -1,4 +1,4 @@
-import type { Article, GitHubFile, ObsidianFrontMatter } from '~/types';
+import type { Article, ObsidianFrontMatter } from '~/types';
 
 /**
  * マークダウン文字列からフロントマターとコンテンツを抽出する
@@ -142,35 +142,43 @@ export function extractPreviewContent(content: string, maxLength: number = 150):
 }
 
 /**
- * GitHubファイルからArticle情報を抽出する
- * @param file GitHubファイル
- * @param content ファイルの内容
+ * マークダウンファイルからArticle情報を抽出する
+ * GitHubに依存しない汎用的なインターフェース
+ *
+ * @param fileData ファイルデータ
  * @returns 記事情報
  */
-export function parseObsidianArticle(file: GitHubFile, content: string): Article | null {
+export function parseObsidianArticle(fileData: {
+  name: string;
+  path: string;
+  content: string;
+  sha?: string;
+}): Article | null {
+  const { name, path, content: rawContent, sha } = fileData;
+
   // フロントマターとコンテンツを抽出
-  const { frontMatter, content: markdownContent } = extractFrontMatter(content);
+  const { frontMatter, content: markdownContent } = extractFrontMatter(rawContent);
 
   // フロントマターがない場合はnullを返す
   if (!frontMatter) {
-    console.warn(`${file.path} にフロントマターが見つかりませんでした`);
+    console.warn(`${path} にフロントマターが見つかりませんでした`);
     return null;
   }
 
   // 公開設定を確認
   if (frontMatter.published !== undefined && frontMatter.published === false) {
-    console.info(`${file.path} は公開設定されていません`);
+    console.info(`${path} は公開設定されていません`);
     return null;
   }
 
   // タイトルを取得（フロントマターのtitleか、ファイル名）
-  const title = frontMatter.title || file.name.replace('.md', '');
+  const title = frontMatter.title || name.replace('.md', '');
 
   // スラッグを取得（aliasesの最初の値か、ファイル名をスラッグ化）
   const slug =
     frontMatter.aliases && frontMatter.aliases.length > 0
       ? frontMatter.aliases[0]
-      : file.name.replace('.md', '').toLowerCase().replace(/\s+/g, '-');
+      : name.replace('.md', '').toLowerCase().replace(/\s+/g, '-');
 
   // タグを取得
   const tags = frontMatter.tags || [];
@@ -188,7 +196,126 @@ export function parseObsidianArticle(file: GitHubFile, content: string): Article
     published: frontMatter.published === true || frontMatter.published === undefined, // 明示的にfalseでない限りtrue
     uid: frontMatter.uid,
     content: markdownContent,
-    sha: file.sha,
-    path: file.path,
+    sha,
+    path,
   };
+}
+
+/**
+ * Obsidianの画像構文を検出する
+ * @param content マークダウンコンテンツ
+ * @returns 検出された画像パスの配列
+ */
+export function extractObsidianImagePaths(content: string): string[] {
+  const imageRegex = /!\[\[(.*?)\]\]/g;
+  const matches = content.match(imageRegex);
+
+  if (!matches) return [];
+
+  return matches.map(match => {
+    // ![[ファイル名]] からファイル名を抽出
+    return match.replace(/!\[\[(.*?)\]\]/, '$1').trim();
+  });
+}
+
+/**
+ * Obsidianの画像構文をHTML imgタグに変換する（パス変換関数を利用）
+ * @param content マークダウンコンテンツ
+ * @param pathTransformer 画像パスを変換する関数
+ * @returns 変換後のコンテンツ
+ */
+export function convertObsidianImagesToHtml(
+  content: string,
+  pathTransformer: (imagePath: string) => string
+): string {
+  if (!content) return '';
+
+  const imageRegex = /!\[\[(.*?)\]\]/g;
+  let processedContent = content;
+  const matches = content.match(imageRegex);
+
+  if (matches) {
+    matches.forEach(match => {
+      const fileName = match.replace(/!\[\[(.*?)\]\]/, '$1').trim();
+      const transformedPath = pathTransformer(fileName);
+
+      processedContent = processedContent.replace(
+        match,
+        `<img src="${transformedPath}" alt="${fileName}" class="max-w-full h-auto rounded my-4" />`
+      );
+    });
+  }
+
+  return processedContent;
+}
+
+/**
+ * Obsidianのリンク構文をHTMLのaタグに変換する
+ * @param content マークダウンコンテンツ
+ * @returns 変換後のコンテンツ
+ */
+export function convertObsidianLinksToHtml(content: string): string {
+  if (!content) return '';
+
+  const linkRegex = /\[\[(.*?)\]\]/g;
+  let processedContent = content;
+  const matches = content.match(linkRegex);
+
+  if (matches) {
+    matches.forEach(match => {
+      const linkContent = match.replace(/\[\[(.*?)\]\]/, '$1').trim();
+      const parts = linkContent.split('|');
+      const noteName = parts[0].trim();
+      const alias = parts.length > 1 ? parts[1].trim() : noteName;
+
+      processedContent = processedContent.replace(
+        match,
+        `<a href="/${alias}" class="text-blue-400 hover:underline">${noteName}</a>`
+      );
+    });
+  }
+
+  return processedContent;
+}
+
+/**
+ * マークダウン段落をHTMLの段落タグに変換する
+ * @param content マークダウンコンテンツ
+ * @returns 変換後のコンテンツ
+ */
+export function convertMarkdownParagraphs(content: string): string {
+  if (!content) return '';
+
+  return content
+    .split('\n\n')
+    .map(para => {
+      const trimmed = para.trim();
+      if (!trimmed) return '';
+      return `<p>${trimmed}</p>`;
+    })
+    .join('');
+}
+
+/**
+ * Obsidianのマークダウンコンテンツを完全にHTMLに変換する
+ * @param content マークダウンコンテンツ
+ * @param imagePathTransformer 画像パス変換関数
+ * @returns 変換後のHTMLコンテンツ
+ */
+export function convertObsidianContentToHtml(
+  content: string,
+  imagePathTransformer: (imagePath: string) => string
+): string {
+  if (!content) return '';
+
+  // 画像構文の変換
+  let html = convertObsidianImagesToHtml(content, imagePathTransformer);
+
+  // リンク構文の変換
+  html = convertObsidianLinksToHtml(html);
+
+  // 段落の処理
+  html = convertMarkdownParagraphs(html);
+
+  return html;
 }

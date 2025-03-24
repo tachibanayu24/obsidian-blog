@@ -5,13 +5,20 @@ import { Tag } from '../common/tag';
 export interface SidebarProps {
   tags?: string[];
   onTagSelect?: (tag: string) => void;
-  selectedTag?: string;
+  selectedTags?: string[];
   onSearch?: (query: string) => void;
+  searchQuery?: string;
 }
 
-export function Sidebar({ tags = [], onTagSelect, selectedTag, onSearch }: SidebarProps) {
+export function Sidebar({
+  tags = [],
+  onTagSelect,
+  selectedTags = [],
+  onSearch,
+  searchQuery = '',
+}: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery);
   const location = useLocation();
 
   const toggleSidebar = () => {
@@ -19,13 +26,13 @@ export function Sidebar({ tags = [], onTagSelect, selectedTag, onSearch }: Sideb
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    setLocalSearchQuery(e.target.value);
   };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (onSearch) {
-      onSearch(searchQuery);
+      onSearch(localSearchQuery);
     }
   };
 
@@ -100,7 +107,7 @@ export function Sidebar({ tags = [], onTagSelect, selectedTag, onSearch }: Sideb
             <input
               type="text"
               placeholder="記事を検索..."
-              value={searchQuery}
+              value={localSearchQuery}
               onChange={handleSearchChange}
               className="w-full py-2 px-3 pl-10 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
@@ -129,7 +136,7 @@ export function Sidebar({ tags = [], onTagSelect, selectedTag, onSearch }: Sideb
                 key={tag}
                 name={tag}
                 onClick={handleTagClick}
-                className={selectedTag === tag ? 'bg-blue-700' : ''}
+                className={selectedTags.includes(tag) ? 'bg-blue-700' : ''}
               />
             ))}
           </div>
