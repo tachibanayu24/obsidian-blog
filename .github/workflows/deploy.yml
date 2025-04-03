@@ -1,0 +1,48 @@
+name: Deploy Blog
+
+on:
+  push:
+    branches:
+      - main
+
+  repository_dispatch:
+    types: [vault-updated] # obsidian-default-vaultの `_published` が更新されたらdispatchされる
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout obsidian-blog Repo
+        uses: actions/checkout@v4
+        with:
+          path: obsidian-blog
+
+      - name: Checkout obsidian-default-vault Repo (to temp location)
+        uses: actions/checkout@v4
+        with:
+          repository: tachibanayu24/obsidian-default-vault
+          path: vault-temp
+          token: ${{ secrets.VAULT_ACCESS_TOKEN }}
+
+      - name: Prepare content directory
+        run: mkdir -p obsidian-blog/content
+
+      - name: Copy published content
+        run: |
+          if [ -d "vault-temp/_published" ] && [ "$(ls -A vault-temp/_published)" ]; then
+            cp -r vault-temp/_published/* obsidian-blog/content/
+          else
+            echo "Warning: vault-temp/_published directory is empty or does not exist."
+          fi
+
+      - name: Setup Node, Install, Build
+        working-directory: obsidian-blog
+        run: |
+          npm ci
+          npx quartz build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./obsidian-blog/public
