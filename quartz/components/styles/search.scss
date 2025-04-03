@@ -1,6 +1,9 @@
 @use "../../styles/variables.scss" as *;
 
 .search {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 0.8rem;
+
   min-width: fit-content;
   max-width: 14rem;
   @media all and ($mobile) {

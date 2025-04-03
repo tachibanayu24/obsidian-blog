@@ -26,6 +26,7 @@ const TagList: QuartzComponent = ({ fileData, displayClass }: QuartzComponentPro
 
 TagList.css = `
 .tags {
+  font-size: 0.8rem;
   list-style: none;
   display: flex;
   padding-left: 0;
@@ -37,7 +38,7 @@ TagList.css = `
 .section-li > .section > .tags {
   justify-content: flex-end;
 }
-  
+
 .tags > li {
   display: inline-block;
   white-space: nowrap;
@@ -48,8 +49,8 @@ TagList.css = `
 a.internal.tag-link {
   border-radius: 8px;
   background-color: var(--highlight);
-  padding: 0.2rem 0.4rem;
-  margin: 0 0.1rem;
+  padding: 0.2rem 0.6rem;
+  margin: 0 0.2rem;
 }
 `
 

@@ -30,10 +30,10 @@ export default {
       darkMode: "ダークモード",
     },
     explorer: {
-      title: "エクスプローラー",
+      title: "記事一覧",
     },
     footer: {
-      createdWith: "作成",
+      createdWith: "Written by",
     },
     graph: {
       title: "グラフビュー",
@@ -47,11 +47,11 @@ export default {
       linkToOriginal: "元記事へのリンク",
     },
     search: {
-      title: "検索",
+      title: "検索（⌘+K）",
       searchBarPlaceholder: "検索ワードを入力",
     },
     tableOfContents: {
-      title: "目次",
+      title: "ToC",
     },
     contentMeta: {
       readingTime: ({ minutes }) => `${minutes} min read`,

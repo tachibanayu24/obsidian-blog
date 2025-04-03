@@ -38,8 +38,19 @@ jobs:
             echo "Warning: vault-temp/_published directory is empty or does not exist."
           fi
 
+    - name: Copy attachments to content root
+            run: |
+              if [ -d "vault-temp/_config/attachment" ] && [ "$(ls -A vault-temp/_config/attachment)" ]; then
+                cp -r vault-temp/_config/attachment/* obsidian-blog/content/
+              else
+                echo "Info: vault-temp/_config/attachment directory is empty or does not exist."
+              fi
+
+
       - name: Setup Node, Install, Build
         working-directory: obsidian-blog
+        env:
+          NODE_ENV: production
         run: |
           npm ci
           npx quartz build

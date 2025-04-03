@@ -37,7 +37,9 @@ export default ((opts?: Partial<Options>) => {
           aria-controls="toc-content"
           aria-expanded={!fileData.collapseToc}
         >
-          <h3>{i18n(cfg.locale).components.tableOfContents.title}</h3>
+          <h3 style={{ fontSize: "0.8rem", color: "var(--darkgray)" }}>
+            {i18n(cfg.locale).components.tableOfContents.title}
+          </h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
