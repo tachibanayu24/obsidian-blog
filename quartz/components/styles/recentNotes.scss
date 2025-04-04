@@ -1,11 +1,32 @@
 .recent-notes {
   & > h3 {
     margin: 0.5rem 0 0 0;
+    font-size: 0.8rem;
+  }
+
+  a.internal {
     font-size: 1rem;
   }
 
+  .meta {
+    font-size: 0.8rem;
+  }
+
+  .tags {
+    gap: 0.2rem;
+  }
+
+  .internal.tag-link {
+    font-size: 0.8rem;
+    gap: 0.1rem;
+    padding: 0.1rem 0.4rem
+  }
+
+  .recent-li {
+  list-style: none;
+  }
+
   & > ul.recent-ul {
-    list-style: none;
     margin-top: 1rem;
     padding-left: 0;
 

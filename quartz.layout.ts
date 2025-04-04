@@ -1,5 +1,6 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { SimpleSlug } from "./quartz/util/path"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -46,6 +47,19 @@ export const defaultContentPageLayout: PageLayout = {
             grow: true,
           },
         ],
+      }),
+    ),
+    Component.DesktopOnly(
+      Component.RecentNotes({
+        title: "最近の更新",
+        linkToMore: "tags/" as SimpleSlug,
+        limit: 3,
+        showTags: true,
+        sort: (pageA, pageB) => {
+          const dateA = pageA.dates?.modified?.getTime() ?? 0
+          const dateB = pageB.dates?.modified?.getTime() ?? 0
+          return dateB - dateA
+        }
       }),
     ),
     Component.Explorer({
