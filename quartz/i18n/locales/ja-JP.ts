@@ -51,7 +51,7 @@ export default {
       searchBarPlaceholder: "検索ワードを入力",
     },
     tableOfContents: {
-      title: "ToC",
+      title: "On This Page",
     },
     contentMeta: {
       readingTime: ({ minutes }) => `${minutes} min read`,

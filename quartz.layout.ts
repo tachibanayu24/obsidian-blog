@@ -28,16 +28,36 @@ export const defaultContentPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-      ],
+    Component.DesktopOnly(
+      Component.Flex({
+        components: [
+          {
+            Component: Component.Search(),
+            grow: true,
+          },
+        ],
+      }),
+    ),
+    Component.MobileOnly(
+      Component.Flex({
+        components: [
+          {
+            Component: Component.SearchMobile(),
+            grow: true,
+          },
+        ],
+      }),
+    ),
+    Component.Explorer({
+      folderDefaultState: "open",
+      mapFn: (node) => {
+        if (node.isFolder) {
+          node.displayName = `📁 ${node.displayName}`
+        } else {
+          node.displayName = `📄 ${node.displayName}`
+        }
+      },
     }),
-    Component.Explorer(),
   ],
   right: [
     // Component.Graph(),
@@ -58,7 +78,7 @@ export const defaultListPageLayout: PageLayout = {
           Component: Component.Search(),
           grow: true,
         },
-        { Component: Component.Darkmode() },
+        // { Component: Component.Darkmode() },
       ],
     }),
     Component.Explorer(),

@@ -14,6 +14,7 @@ import TagList from "./TagList"
 import Graph from "./Graph"
 import Backlinks from "./Backlinks"
 import Search from "./Search"
+import SearchMobile from "./SearchMobile"
 import Footer from "./Footer"
 import DesktopOnly from "./DesktopOnly"
 import MobileOnly from "./MobileOnly"
@@ -39,6 +40,7 @@ export {
   Graph,
   Backlinks,
   Search,
+  SearchMobile,
   Footer,
   DesktopOnly,
   MobileOnly,

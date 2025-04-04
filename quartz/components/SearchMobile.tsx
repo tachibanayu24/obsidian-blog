@@ -14,14 +14,13 @@ const defaultOptions: SearchOptions = {
 }
 
 export default ((userOpts?: Partial<SearchOptions>) => {
-  const Search: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
+  const SearchMobile: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
     const opts = { ...defaultOptions, ...userOpts }
     const searchPlaceholder = i18n(cfg.locale).components.search.searchBarPlaceholder
 
     return (
       <div class={classNames(displayClass, "search")}>
-        <button class="search-button" style={{ margin: "1rem 0" }}>
-          <p>{i18n(cfg.locale).components.search.title}</p>
+        <button class="search-button">
           <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7">
             <title>Search</title>
             <g class="search-path" fill="none">
@@ -47,8 +46,8 @@ export default ((userOpts?: Partial<SearchOptions>) => {
     )
   }
 
-  Search.afterDOMLoaded = script
-  Search.css = style
+  SearchMobile.afterDOMLoaded = script
+  SearchMobile.css = style
 
-  return Search
+  return SearchMobile
 }) satisfies QuartzComponentConstructor
