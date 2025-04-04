@@ -1,5 +1,13 @@
 @use "../../styles/variables.scss" as *;
 
+.explorer-ul > li {
+  margin-bottom: 0.5rem;
+}
+
+.folder-title {
+  font-weight: 600;
+}
+
 @media all and ($mobile) {
   .page > #quartz-body {
     // Shift page position when toggling Explorer on mobile.
@@ -146,6 +154,7 @@ button.desktop-explorer {
     margin-left: 6px;
     padding-left: 0.8rem;
     border-left: 1px solid var(--lightgray);
+    font-size: 0.8rem;
   }
 }
 

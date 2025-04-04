@@ -54,7 +54,7 @@ export default {
       title: "On This Page",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `${minutes} min read`,
+      readingTime: ({ minutes }) => `${minutes}分くらいで読めます`,
     },
   },
   pages: {

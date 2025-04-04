@@ -20,8 +20,8 @@ export default ((userOpts?: Partial<SearchOptions>) => {
 
     return (
       <div class={classNames(displayClass, "search")}>
-        <button class="search-button" style={{ margin: "1rem 0" }}>
-          <p>{i18n(cfg.locale).components.search.title}</p>
+        <button class="search-button" style={{ marginTop: "1rem", marginBottom: "-2rem" }}>
+          <p style={{ fontSize: "0.8rem" }}>{i18n(cfg.locale).components.search.title}</p>
           <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7">
             <title>Search</title>
             <g class="search-path" fill="none">

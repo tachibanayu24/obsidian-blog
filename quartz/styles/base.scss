@@ -142,7 +142,7 @@ a {
   margin: 0 auto;
   & article {
     & > h1 {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
 
     & li:has(> input[type="checkbox"]) {
@@ -380,13 +380,13 @@ h1 {
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   margin-top: 1.9rem;
   margin-bottom: 1rem;
 }
 
 h3 {
-  font-size: 1.12rem;
+  font-size: 1.125rem;
   margin-top: 1.62rem;
   margin-bottom: 1rem;
 }

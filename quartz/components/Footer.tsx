@@ -7,15 +7,15 @@ export default (() => {
     const year = new Date().getFullYear()
     return (
       <footer style={{ textAlign: "center" }}>
-        <p style={{ fontSize: "1rem", lineHeight: "1" }}>
+        <p style={{ fontSize: "0.8rem", lineHeight: "1" }}>
           {i18n(cfg.locale).components.footer.createdWith}{" "}
-          <a href="https://x.tachibanayu24.com/" target="_blank" rel="noopener noreferrer">tachibanayu24</a> © {year}
+          <a href="https://x.com/tachibanayu24" target="_blank" rel="noopener noreferrer">tachibanayu24</a> © {year}
         </p>
 
-        <p style={{ fontSize: "0.8rem", lineHeight: "1" }}>
+        <p style={{ fontSize: "0.725rem", lineHeight: "1" }}>
           このブログは、
           <a href="https://quartz.jzhao.xyz/" target="_blank" rel="noopener noreferrer">Quartz</a>
-          をベースに作成されています。
+          をベースに作成しています。
         </p>
       </footer>
     )
