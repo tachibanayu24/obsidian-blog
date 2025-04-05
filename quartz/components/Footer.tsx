@@ -3,10 +3,14 @@ import style from "./styles/footer.scss"
 import { i18n } from "../i18n"
 
 export default (() => {
-  const Footer: QuartzComponent = ({ cfg }: QuartzComponentProps) => {
+  const Footer: QuartzComponent = ({ cfg, fileData }: QuartzComponentProps) => {
     const year = new Date().getFullYear()
+    const title = (fileData.frontmatter?.title ?? "ページタイトル") + cfg.pageTitleSuffix
+    const url = `https://${cfg.baseUrl}/${encodeURIComponent(fileData.slug ?? '')}`
+
     return (
       <footer style={{ textAlign: "center" }}>
+
         <hr />
         <p style={{ fontSize: "0.8rem", lineHeight: "1" }}>
           {i18n(cfg.locale).components.footer.createdWith}{" "}

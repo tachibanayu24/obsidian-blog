@@ -23,3 +23,12 @@ footer {
     }
   }
 }
+
+.twitter-share-button {
+  transition: transform 0.2s ease;
+
+  &:hover {
+    color: white !important;
+    transform: scale(1.05);
+  }
+}
