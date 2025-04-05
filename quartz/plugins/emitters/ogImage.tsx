@@ -30,7 +30,7 @@ async function generateSocialImage(
   userOpts: SocialImageOptions,
 ): Promise<Readable> {
   const { width, height } = userOpts
-  const iconPath = joinSegments(QUARTZ, "static", "icon.png")
+  const iconPath = joinSegments(QUARTZ, "static", "hokori_log_small.png")
   let iconBase64: string | undefined = undefined
   try {
     const iconData = await fs.readFile(iconPath)
@@ -73,9 +73,9 @@ async function processOgImage(
 ) {
   const cfg = ctx.cfg.configuration
   const slug = fileData.slug!
-  const titleSuffix = cfg.pageTitleSuffix ?? ""
+  // const titleSuffix = cfg.pageTitleSuffix ?? ""
   const title =
-    (fileData.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title) + titleSuffix
+    (fileData.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title)
   const description =
     fileData.frontmatter?.socialDescription ??
     fileData.frontmatter?.description ??

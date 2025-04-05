@@ -5,7 +5,7 @@ import { QuartzPluginData } from "../plugins/vfile"
 import { JSXInternal } from "preact/src/jsx"
 import { FontSpecification, getFontSpecificationName, ThemeKey } from "./theme"
 import path from "path"
-import { QUARTZ } from "./path"
+import { joinSegments, QUARTZ } from "./path"
 import { formatDate, getDate } from "../components/Date"
 import readingTime from "reading-time"
 import { i18n } from "../i18n"
@@ -200,8 +200,10 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
   return (
     <div
       style={{
-        display: "flex",
+        position: "relative",
+  display: "flex",
         flexDirection: "column",
+        // justifyContent: "space-between",
         height: "100%",
         width: "100%",
         backgroundColor: cfg.theme.colors[colorScheme].light,
@@ -210,15 +212,15 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
       }}
     >
       {/* Header Section */}
-      <div
+      {/* <div
         style={{
           display: "flex",
           alignItems: "center",
           gap: "1rem",
           marginBottom: "0.5rem",
         }}
-      >
-        {iconBase64 && (
+      > */}
+        {/* {iconBase64 && (
           <img
             src={iconBase64}
             width={56}
@@ -237,8 +239,8 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
           }}
         >
           {cfg.baseUrl}
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
 
       {/* Title Section */}
       <div
@@ -253,12 +255,12 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
             margin: 0,
             fontSize: useSmallerFont ? 64 : 72,
             fontFamily: headerFont,
-            fontWeight: 700,
+            fontWeight: 900,
             color: cfg.theme.colors[colorScheme].dark,
             lineHeight: 1.2,
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 2,
+            WebkitLineClamp: 3,
             overflow: "hidden",
             textOverflow: "ellipsis",
           }}
@@ -267,7 +269,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
         </h1>
       </div>
 
-      {/* Description Section */}
+      {/* Description Section
       <div
         style={{
           display: "flex",
@@ -289,7 +291,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
         >
           {description}
         </p>
-      </div>
+      </div> */}
 
       {/* Footer with Metadata */}
       <div
@@ -308,11 +310,11 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
             display: "flex",
             alignItems: "center",
             gap: "2rem",
-            color: cfg.theme.colors[colorScheme].gray,
+            color: cfg.theme.colors[colorScheme].darkgray,
             fontSize: 28,
           }}
         >
-          {date && (
+          {/* {date && (
             <div style={{ display: "flex", alignItems: "center" }}>
               <svg
                 style={{ marginRight: "0.5rem" }}
@@ -329,7 +331,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
               </svg>
               {date}
             </div>
-          )}
+          )} */}
           <div style={{ display: "flex", alignItems: "center" }}>
             <svg
               style={{ marginRight: "0.5rem" }}
@@ -371,6 +373,11 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
             </div>
           ))}
         </div>
+      </div>
+
+      {/* フッターの上下中央 */}
+      <div style={{ display: "flex", position: "absolute", bottom: "2.5rem", left: "50%", transform: "translate(-50%, 0)" }}>
+        <img src={iconBase64} height={80} />
       </div>
     </div>
   )
