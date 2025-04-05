@@ -15,10 +15,10 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout obsidian-blog Repo
+      - name: Checkout hokori-log Repo
         uses: actions/checkout@v4
         with:
-          path: obsidian-blog
+          path: hokori-log
 
       - name: Checkout obsidian-default-vault Repo (to temp location)
         uses: actions/checkout@v4
@@ -28,12 +28,12 @@ jobs:
           token: ${{ secrets.VAULT_ACCESS_TOKEN }}
 
       - name: Prepare content directory
-        run: mkdir -p obsidian-blog/content
+        run: mkdir -p hokori-log/content
 
       - name: Copy published content
         run: |
           if [ -d "vault-temp/_published" ] && [ "$(ls -A vault-temp/_published)" ]; then
-            cp -r vault-temp/_published/* obsidian-blog/content/
+            cp -r vault-temp/_published/* hokori-log/content/
           else
             echo "Warning: vault-temp/_published directory is empty or does not exist."
           fi
@@ -41,14 +41,14 @@ jobs:
       - name: Copy attachments to content root
         run: |
           if [ -d "vault-temp/_config/attachment" ] && [ "$(ls -A vault-temp/_config/attachment)" ]; then
-            cp -r vault-temp/_config/attachment/* obsidian-blog/content/
+            cp -r vault-temp/_config/attachment/* hokori-log/content/
           else
             echo "Info: vault-temp/_config/attachment directory is empty or does not exist."
           fi
 
 
       - name: Setup Node, Install, Build
-        working-directory: obsidian-blog
+        working-directory: hokori-log
         env:
           NODE_ENV: production
         run: |
@@ -59,4 +59,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./obsidian-blog/public
+          publish_dir: ./hokori-log/public
