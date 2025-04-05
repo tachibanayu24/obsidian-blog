@@ -6,13 +6,14 @@ export default (() => {
   const Footer: QuartzComponent = ({ cfg }: QuartzComponentProps) => {
     const year = new Date().getFullYear()
     return (
-      <footer style={{ textAlign: "center" }}>
+      <footer style={{ textAlign: "center", marginTop: "4rem" }}>
+        <hr />
         <p style={{ fontSize: "0.8rem", lineHeight: "1" }}>
           {i18n(cfg.locale).components.footer.createdWith}{" "}
           <a href="https://x.com/tachibanayu24" target="_blank" rel="noopener noreferrer">tachibanayu24</a> © {year}
         </p>
 
-        <p style={{ fontSize: "0.725rem", lineHeight: "1" }}>
+        <p style={{ fontSize: "0.725rem", lineHeight: "1.2" }}>
           このブログは、
           <a href="https://quartz.jzhao.xyz/" target="_blank" rel="noopener noreferrer">Quartz</a>
           をベースに作成しています。<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener noreferrer">Google Analytics</a>を使用してアクセス解析を行っています。
