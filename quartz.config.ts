@@ -18,7 +18,7 @@ const config: QuartzConfig = {
     },
     locale: "ja-JP",
     baseUrl: "blog.tachibanayu24.com",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: ["private", "templates", ".obsidian", "static-images"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
