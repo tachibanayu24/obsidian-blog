@@ -131,6 +131,8 @@ button.desktop-explorer {
       color: var(--dark);
       opacity: 0.75;
       pointer-events: all;
+      line-height: 1.2rem;
+      margin-bottom: 0.5rem;
 
       &.active {
         opacity: 1;
@@ -165,7 +167,7 @@ button.desktop-explorer {
   user-select: none;
 
   & div > a {
-    color: var(--secondary);
+    color: var(--darkgray);
     font-family: var(--headerFont);
     font-size: 0.95rem;
     font-weight: $semiBoldWeight;

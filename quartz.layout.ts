@@ -64,13 +64,6 @@ export const defaultContentPageLayout: PageLayout = {
     ),
     Component.Explorer({
       folderDefaultState: "open",
-      mapFn: (node) => {
-        if (node.isFolder) {
-          node.displayName = `📁 ${node.displayName}`
-        } else {
-          node.displayName = `📄 ${node.displayName}`
-        }
-      },
     }),
   ],
   right: [
@@ -121,13 +114,6 @@ export const defaultListPageLayout: PageLayout = {
     ),
     Component.Explorer({
       folderDefaultState: "open",
-      mapFn: (node) => {
-        if (node.isFolder) {
-          node.displayName = `📁 ${node.displayName}`
-        } else {
-          node.displayName = `📄 ${node.displayName}`
-        }
-      },
     }),
   ],
   right: [],

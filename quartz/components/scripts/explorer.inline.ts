@@ -79,7 +79,30 @@ function createFileNode(currentSlug: FullSlug, node: FileTrieNode): HTMLLIElemen
   const a = li.querySelector("a") as HTMLAnchorElement
   a.href = resolveRelative(currentSlug, node.slug)
   a.dataset.for = node.slug
-  a.textContent = node.displayName
+
+  // スタイルを追加
+  a.style.display = "flex"
+  // a.style.alignItems = "center"
+  a.style.gap = "2px"
+
+  // ファイルアイコンのSVGを作成
+  const fileSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+  fileSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+  fileSvg.setAttribute("height", "20px")
+  fileSvg.setAttribute("viewBox", "0 -960 960 960")
+  fileSvg.setAttribute("width", "20px")
+  fileSvg.setAttribute("fill", "#8b7355")
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path")
+  path.setAttribute("d", "M340-460h280v-64H340v64Zm0 120h280v-64H340v64Zm0 120h174v-64H340v64ZM263.72-96Q234-96 213-117.15T192-168v-624q0-29.7 21.15-50.85Q234.3-864 264-864h312l192 192v504q0 29.7-21.16 50.85Q725.68-96 695.96-96H263.72ZM528-624v-168H264v624h432v-456H528ZM264-792v168-168 624-624Z")
+
+  fileSvg.appendChild(path)
+  fileSvg.style.flexShrink = "0"
+  a.appendChild(fileSvg)
+
+  // テキストノードを追加
+  const text = document.createTextNode(node.displayName)
+  a.appendChild(text)
 
   if (currentSlug === node.slug) {
     a.classList.add("active")
@@ -111,7 +134,68 @@ function createFolderNode(
     a.href = resolveRelative(currentSlug, folderPath)
     a.dataset.for = folderPath
     a.className = "folder-title"
-    a.textContent = node.displayName
+
+    a.style.display = "flex"
+    a.style.alignItems = "center"
+    a.style.gap = "2px"
+    a.style.fontWeight = "bold"
+
+    // 閉じているフォルダーのSVG
+    const closedFolderSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    closedFolderSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+    closedFolderSvg.setAttribute("height", "20px")
+    closedFolderSvg.setAttribute("viewBox", "0 -960 960 960")
+    closedFolderSvg.setAttribute("width", "20px")
+    closedFolderSvg.setAttribute("fill", "#8b7355")
+    closedFolderSvg.classList.add("folder-closed")
+
+    const closedPath = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    closedPath.setAttribute("d", "M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z")
+    closedFolderSvg.appendChild(closedPath)
+    closedFolderSvg.style.flexShrink = "0"
+
+    // 開いているフォルダーのSVG
+    const openFolderSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    openFolderSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+    openFolderSvg.setAttribute("height", "20px")
+    openFolderSvg.setAttribute("viewBox", "0 -960 960 960")
+    openFolderSvg.setAttribute("width", "20px")
+    openFolderSvg.setAttribute("fill", "#8b7355")
+    openFolderSvg.classList.add("folder-open")
+    openFolderSvg.style.display = "none"
+    openFolderSvg.style.flexShrink = "0"
+    const openPath = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    openPath.setAttribute("d", "M168-192q-32 0-52-21.16t-20-50.88v-432.24Q96-726 116-747t52-21h216l96 96h313q31 0 50.5 21t21.5 51H451l-96-96H168v432l78-264h690l-85 285q-8 23-21 37t-38 14H168Zm75-72h538l59-192H300l-57 192Zm0 0 57-192-57 192Zm-75-336v-96 96Z")
+    openFolderSvg.appendChild(openPath)
+
+    a.appendChild(closedFolderSvg)
+    a.appendChild(openFolderSvg)
+
+    const text = document.createTextNode(node.displayName)
+    a.appendChild(text)
+
+    // フォルダーの状態に応じてアイコンを切り替える
+    const updateFolderIcon = () => {
+      const isOpen = folderOuter.classList.contains("open")
+      closedFolderSvg.style.display = isOpen ? "none" : "block"
+      openFolderSvg.style.display = isOpen ? "block" : "none"
+    }
+
+    // 初期状態の設定
+    updateFolderIcon()
+
+    // フォルダーの開閉状態が変更されたときにアイコンを更新
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === "attributes" && mutation.attributeName === "class") {
+          updateFolderIcon()
+        }
+      })
+    })
+
+    observer.observe(folderOuter, { attributes: true })
+    window.addCleanup(() => observer.disconnect())
+
     button.replaceWith(a)
   } else {
     const span = titleContainer.querySelector(".folder-title") as HTMLElement
