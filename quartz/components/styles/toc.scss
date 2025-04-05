@@ -73,6 +73,10 @@ ul.toc-content {
       padding-left: calc(0.625rem * #{$i});
       font-size: calc(0.85rem - 0.05rem * #{$i});
       line-height: calc(1.4rem);
+
+      @if $i == 0 {
+        margin-top: 0.5rem;
+      }
     }
   }
 }
