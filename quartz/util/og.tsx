@@ -201,9 +201,9 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
     <div
       style={{
         position: "relative",
-  display: "flex",
+        display: "flex",
         flexDirection: "column",
-        // justifyContent: "space-between",
+        justifyContent: "space-between",
         height: "100%",
         width: "100%",
         backgroundColor: cfg.theme.colors[colorScheme].light,
@@ -211,43 +211,20 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
         fontFamily: bodyFont,
       }}
     >
-      {/* Header Section */}
-      {/* <div
+
+      <div
         style={{
           display: "flex",
-          alignItems: "center",
-          gap: "1rem",
-          marginBottom: "0.5rem",
-        }}
-      > */}
-        {/* {iconBase64 && (
-          <img
-            src={iconBase64}
-            width={56}
-            height={56}
-            style={{
-              borderRadius: "50%",
-            }}
-          />
-        )}
-        <div
-          style={{
-            display: "flex",
-            fontSize: 32,
-            color: cfg.theme.colors[colorScheme].gray,
-            fontFamily: bodyFont,
+          justifyContent: "center",
           }}
         >
-          {cfg.baseUrl}
-        </div> */}
-      {/* </div> */}
+        <img src={iconBase64} height={68} />
+      </div>
 
       {/* Title Section */}
       <div
         style={{
           display: "flex",
-          marginTop: "1rem",
-          marginBottom: "1.5rem",
         }}
       >
         <h1
@@ -269,37 +246,13 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
         </h1>
       </div>
 
-      {/* Description Section
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          fontSize: 36,
-          color: cfg.theme.colors[colorScheme].darkgray,
-          lineHeight: 1.4,
-        }}
-      >
-        <p
-          style={{
-            margin: 0,
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 5,
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {description}
-        </p>
-      </div> */}
-
       {/* Footer with Metadata */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          marginTop: "2rem",
+          marginBottom: "2rem",
           paddingTop: "2rem",
           borderTop: `1px solid ${cfg.theme.colors[colorScheme].lightgray}`,
         }}
@@ -314,24 +267,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
             fontSize: 28,
           }}
         >
-          {/* {date && (
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <svg
-                style={{ marginRight: "0.5rem" }}
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              {date}
-            </div>
-          )} */}
+
           <div style={{ display: "flex", alignItems: "center" }}>
             <svg
               style={{ marginRight: "0.5rem" }}
@@ -373,11 +309,6 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
             </div>
           ))}
         </div>
-      </div>
-
-      {/* フッターの上下中央 */}
-      <div style={{ display: "flex", position: "absolute", bottom: "2.5rem", left: "50%", transform: "translate(-50%, 0)" }}>
-        <img src={iconBase64} height={80} />
       </div>
     </div>
   )
