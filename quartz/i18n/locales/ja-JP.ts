@@ -64,8 +64,8 @@ export default {
     },
     error: {
       title: "Not Found",
-      notFound: "ページが存在しないか、非公開設定になっています。",
-      home: "ホームページに戻る",
+      notFound: "ページが見つかりませんでした。",
+      home: "トップに戻る",
     },
     folderContent: {
       folder: "フォルダ",

@@ -54,7 +54,7 @@ export const defaultContentPageLayout: PageLayout = {
         title: "最近の更新",
         linkToMore: "tags/" as SimpleSlug,
         limit: 3,
-        showTags: true,
+        showTags: false,
         sort: (pageA, pageB) => {
           const dateA = pageA.dates?.modified?.getTime() ?? 0
           const dateB = pageB.dates?.modified?.getTime() ?? 0
@@ -86,16 +86,49 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        // { Component: Component.Darkmode() },
-      ],
+    Component.DesktopOnly(
+      Component.Flex({
+        components: [
+          {
+            Component: Component.Search(),
+            grow: true,
+          },
+        ],
+      }),
+    ),
+    Component.MobileOnly(
+      Component.Flex({
+        components: [
+          {
+            Component: Component.SearchMobile(),
+            grow: true,
+          },
+        ],
+      }),
+    ),
+    Component.DesktopOnly(
+      Component.RecentNotes({
+        title: "最近の更新",
+        linkToMore: "tags/" as SimpleSlug,
+        limit: 3,
+        showTags: false,
+        sort: (pageA, pageB) => {
+          const dateA = pageA.dates?.modified?.getTime() ?? 0
+          const dateB = pageB.dates?.modified?.getTime() ?? 0
+          return dateB - dateA
+        }
+      }),
+    ),
+    Component.Explorer({
+      folderDefaultState: "open",
+      mapFn: (node) => {
+        if (node.isFolder) {
+          node.displayName = `📁 ${node.displayName}`
+        } else {
+          node.displayName = `📄 ${node.displayName}`
+        }
+      },
     }),
-    Component.Explorer(),
   ],
   right: [],
 }
