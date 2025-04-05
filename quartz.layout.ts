@@ -16,7 +16,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ConditionalRender({
       component: Component.Breadcrumbs({
         spacerSymbol: "/",
-        rootName: "root",
+        rootName: "top",
         resolveFrontmatterTitle: true,
         showCurrentPage: true,
       }),
@@ -25,6 +25,21 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.TagList(),
+  ],
+  afterBody: [
+    Component.MobileOnly(
+      Component.RecentNotes({
+        title: "最近の更新",
+        linkToMore: "tags/" as SimpleSlug,
+        limit: 3,
+        showTags: false,
+        sort: (pageA, pageB) => {
+          const dateA = pageA.dates?.modified?.getTime() ?? 0
+          const dateB = pageB.dates?.modified?.getTime() ?? 0
+          return dateB - dateA
+        }
+      }),
+    ),
   ],
   left: [
     Component.PageTitle(),
@@ -117,4 +132,19 @@ export const defaultListPageLayout: PageLayout = {
     }),
   ],
   right: [],
-}
+  afterBody: [
+    Component.MobileOnly(
+      Component.RecentNotes({
+        title: "最近の更新",
+        linkToMore: "tags/" as SimpleSlug,
+        limit: 3,
+        showTags: false,
+        sort: (pageA, pageB) => {
+          const dateA = pageA.dates?.modified?.getTime() ?? 0
+          const dateB = pageB.dates?.modified?.getTime() ?? 0
+          return dateB - dateA
+        }
+      }),
+    ),
+  ],
+  }

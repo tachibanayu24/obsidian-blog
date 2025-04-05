@@ -6,7 +6,7 @@ export default (() => {
   const Footer: QuartzComponent = ({ cfg }: QuartzComponentProps) => {
     const year = new Date().getFullYear()
     return (
-      <footer style={{ textAlign: "center", marginTop: "4rem" }}>
+      <footer style={{ textAlign: "center" }}>
         <hr />
         <p style={{ fontSize: "0.8rem", lineHeight: "1" }}>
           {i18n(cfg.locale).components.footer.createdWith}{" "}
