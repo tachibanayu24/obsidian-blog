@@ -143,7 +143,7 @@ pre:hover > .expand-button {
 </ul>
 </li>
 </ul>
-<p>アプローチは、obsidian-vaultの <code>_published</code> ディレクトリ内に変更があったときにGitHub Actionsでeventをdispatchして、obsidian-blog側のGitHub Actionsではobsidian-vaultをcloneしてきてSSGで記事を生成して公開するというものです。</p>
+<p>アプローチは、obsidian-vaultの <code>_published</code> ディレクトリ内に変更があったときにGitHub Actionsでeventをdispatchしてobsidian-blog側のGitHub Actionsのトリガーにし、obdsidian-blogではobsidian-vaultをcloneしてきて <code>_published</code> 内のみSSGで記事を生成して公開するというものです。</p>
 <p>ちなみに、ローカルでは obsidian-blog の <code>content</code> に obsidian-vault のシンボリックリンクを貼って、obsidian-blogでcontentを .gitignore すればローカルでも問題なくプレビューできます。</p>
 <pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;sequenceDiagram\n    participant OV as obsidian-vault\n    participant GA1 as GitHub Actions\n    participant GB as obsidian-blog\n    participant GA2 as GitHub Actions\n    participant GH as GitHub Pages\n\n    OV->>GA1: _published/に差分あり\n    GA1->>GB: vault-updated event\n    GB->>GA2: triggered\n    GA2->>OV: クローン\n    GA2->>GA2: Quartz 4でビルド\n    GA2->>GH: デプロイ&quot;">sequenceDiagram
     participant OV as obsidian-vault
