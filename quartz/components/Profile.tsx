@@ -1,5 +1,6 @@
 import { classNames } from "../util/lang"
 import { QuartzComponent, QuartzComponentConstructor } from "./types"
+import style from "./styles/profile.scss"
 
 const Profile: QuartzComponent = ({displayClass, cfg}) => {
   const dark = cfg.theme.colors.lightMode.dark
@@ -26,44 +27,6 @@ const Profile: QuartzComponent = ({displayClass, cfg}) => {
   )
 }
 
-Profile.css = `
-  .mobile-only .profile {
-    margin-bottom: 2rem;
-  }
-  .profile  {
-    width: 100%;
-    padding: 0.5rem 0;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    border: 1px solid #d4c4b7;
-    border-radius: 0.5rem;
-  }
-  .profile img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50% !important;
-    flex-shrink: 0;
-  }
-  .profile-info {
-    width: 70%;
-    flex-shrink: 1;
-  }
-  .profile-info p {
-    font-size: 0.8rem;
-    line-height: 1.2;
-    margin: 0;
-  }
-  .profile-name {
-    font-weight: bold;
-    margin-bottom: 0.25rem !important;
-  }
-  .profile-links {
-    margin-top: 0.5rem;
-    display: flex;
-    gap: 0.5rem;
-  }
-`
+Profile.css = style
 
 export default (() => Profile) satisfies QuartzComponentConstructor
