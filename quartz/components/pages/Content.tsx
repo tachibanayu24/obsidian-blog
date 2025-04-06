@@ -10,6 +10,7 @@ const Content: QuartzComponent = ({ fileData, tree, cfg }: QuartzComponentProps)
   const title = (fileData.frontmatter?.title ?? "ページタイトル") + cfg.pageTitleSuffix
   const url = `https://${cfg.baseUrl}/${encodeURIComponent(fileData.slug ?? '')}`
 
+  const darkgray = cfg.theme.colors.lightMode.darkgray
 
   return (
     <article class={classString}>
@@ -27,7 +28,7 @@ const Content: QuartzComponent = ({ fileData, tree, cfg }: QuartzComponentProps)
           display: "inline-flex",
           alignItems: "center",
           padding: "0.5rem 1rem",
-          backgroundColor: "#000000",
+          backgroundColor: darkgray,
           color: "white",
           borderRadius: "9999px",
           textDecoration: "none",
