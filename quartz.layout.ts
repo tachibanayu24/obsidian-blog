@@ -27,6 +27,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.TagList(),
   ],
   afterBody: [
+    Component.MobileOnly(Component.Profile()),
     Component.MobileOnly(
       Component.RecentNotes({
         title: "最近の更新",
@@ -64,6 +65,7 @@ export const defaultContentPageLayout: PageLayout = {
         ],
       }),
     ),
+    Component.DesktopOnly(Component.Profile()),
     Component.DesktopOnly(
       Component.RecentNotes({
         title: "最近の更新",
@@ -114,6 +116,7 @@ export const defaultListPageLayout: PageLayout = {
         ],
       }),
     ),
+    Component.DesktopOnly(Component.Profile()),
     Component.DesktopOnly(
       Component.RecentNotes({
         title: "最近の更新",
