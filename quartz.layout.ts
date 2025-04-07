@@ -27,6 +27,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.TagList(),
   ],
   afterBody: [
+    Component.ShareOnX(),
     Component.MobileOnly(Component.Profile()),
     Component.MobileOnly(
       Component.RecentNotes({
