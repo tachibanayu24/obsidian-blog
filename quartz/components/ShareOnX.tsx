@@ -16,6 +16,7 @@ export default (() => {
           rel="noopener noreferrer"
           className="twitter-share-button"
           style={{
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             display: "inline-flex",
             alignItems: "center",
             padding: "0.5rem 1rem",

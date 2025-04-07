@@ -1,22 +1,23 @@
-.recent-notes {
+.recent-notes-for-top {
   margin-bottom: -1rem;
 
   & > h3 {
     margin: 0.5rem 0 0 0;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
 
   a.internal {
-    font-size: 0.8rem;
-    line-height: 1.2;
+    font-size: 1rem;
   }
 
   .meta {
     margin-top: 0.25rem !important;
-    font-size: 0.725rem;
+    font-size: 0.8rem;
+    line-height: 1.2;
   }
 
   .tags {
+    margin-top: 0.25rem !important;
     gap: 0.2rem;
   }
 
@@ -28,7 +29,10 @@
 
   .recent-li {
     list-style: none;
-    line-height: 1;
+    line-height: 1.4;
+    border: 1px solid var(--lightgray);
+    border-radius: 0.5rem;
+    padding: 1rem;
   }
 
   & > ul.recent-ul {
@@ -36,7 +40,7 @@
     margin: 0.5rem 0;
 
     & > li {
-      margin: 0.5rem 0;
+      margin: 1rem 0;
       .section > .desc > h3 > a {
         background-color: transparent;
       }

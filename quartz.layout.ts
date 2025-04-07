@@ -27,21 +27,41 @@ export const defaultContentPageLayout: PageLayout = {
     Component.TagList(),
   ],
   afterBody: [
-    Component.ShareOnX(),
+    Component.ConditionalRender({
+      component: Component.ShareOnX(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
     Component.MobileOnly(Component.Profile()),
-    Component.MobileOnly(
-      Component.RecentNotes({
+    Component.ConditionalRender({
+      component: Component.RecentNotesForTop({
         title: "最近の更新",
         linkToMore: "tags/" as SimpleSlug,
-        limit: 3,
-        showTags: false,
+        limit: 10,
+        showTags: true,
         sort: (pageA, pageB) => {
           const dateA = pageA.dates?.modified?.getTime() ?? 0
           const dateB = pageB.dates?.modified?.getTime() ?? 0
           return dateB - dateA
         }
       }),
-    ),
+      condition: (page) => page.fileData.slug === "index",
+    }),
+    Component.ConditionalRender({
+      component: Component.MobileOnly(
+        Component.RecentNotes({
+          title: "最近の更新",
+          linkToMore: "tags/" as SimpleSlug,
+          limit: 3,
+          showTags: false,
+          sort: (pageA, pageB) => {
+            const dateA = pageA.dates?.modified?.getTime() ?? 0
+            const dateB = pageB.dates?.modified?.getTime() ?? 0
+            return dateB - dateA
+          }
+        }),
+      ),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
   ],
   left: [
     Component.PageTitle(),
@@ -68,16 +88,19 @@ export const defaultContentPageLayout: PageLayout = {
     ),
     Component.DesktopOnly(Component.Profile()),
     Component.DesktopOnly(
-      Component.RecentNotes({
-        title: "最近の更新",
-        linkToMore: "tags/" as SimpleSlug,
-        limit: 3,
-        showTags: false,
-        sort: (pageA, pageB) => {
-          const dateA = pageA.dates?.modified?.getTime() ?? 0
-          const dateB = pageB.dates?.modified?.getTime() ?? 0
-          return dateB - dateA
-        }
+      Component.ConditionalRender({
+        component: Component.RecentNotes({
+          title: "最近の更新",
+          linkToMore: "tags/" as SimpleSlug,
+          limit: 3,
+          showTags: false,
+          sort: (pageA, pageB) => {
+            const dateA = pageA.dates?.modified?.getTime() ?? 0
+            const dateB = pageB.dates?.modified?.getTime() ?? 0
+            return dateB - dateA
+          }
+        }),
+        condition: (page) => page.fileData.slug !== "index",
       }),
     ),
     Component.Explorer({

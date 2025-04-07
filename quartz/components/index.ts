@@ -25,6 +25,7 @@ import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import Profile from "./Profile"
 import ShareOnX from "./ShareOnX"
+import RecentNotesForTop from "./RecentNotesForTop"
 
 export {
   ArticleTitle,
@@ -54,4 +55,5 @@ export {
   ConditionalRender,
   Profile,
   ShareOnX,
+  RecentNotesForTop,
 }
