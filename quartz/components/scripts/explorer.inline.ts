@@ -200,6 +200,69 @@ function createFolderNode(
   } else {
     const span = titleContainer.querySelector(".folder-title") as HTMLElement
     span.textContent = node.displayName
+    span.style.fontWeight = "bold"
+    span.style.color = '#8b7355'
+
+    // ボタンを取得して同様のスタイルを適用
+    const button = titleContainer.querySelector(".folder-button") as HTMLElement
+    button.style.display = "flex"
+    button.style.alignItems = "center"
+    button.style.gap = "2px"
+
+    // 閉じているフォルダーのSVG
+    const closedFolderSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    closedFolderSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+    closedFolderSvg.setAttribute("height", "20px")
+    closedFolderSvg.setAttribute("viewBox", "0 -960 960 960")
+    closedFolderSvg.setAttribute("width", "20px")
+    closedFolderSvg.setAttribute("fill", "#8b7355")
+    closedFolderSvg.classList.add("folder-closed")
+    closedFolderSvg.style.flexShrink = "0"
+
+    const closedPath = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    closedPath.setAttribute("d", "M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z")
+    closedFolderSvg.appendChild(closedPath)
+
+    // 開いているフォルダーのSVG
+    const openFolderSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    openFolderSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+    openFolderSvg.setAttribute("height", "20px")
+    openFolderSvg.setAttribute("viewBox", "0 -960 960 960")
+    openFolderSvg.setAttribute("width", "20px")
+    openFolderSvg.setAttribute("fill", "#8b7355")
+    openFolderSvg.classList.add("folder-open")
+    openFolderSvg.style.display = "none"
+    openFolderSvg.style.flexShrink = "0"
+
+    const openPath = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    openPath.setAttribute("d", "M168-192q-32 0-52-21.16t-20-50.88v-432.24Q96-726 116-747t52-21h216l96 96h313q31 0 50.5 21t21.5 51H451l-96-96H168v432l78-264h690l-85 285q-8 23-21 37t-38 14H168Zm75-72h538l59-192H300l-57 192Zm0 0 57-192-57 192Zm-75-336v-96 96Z")
+    openFolderSvg.appendChild(openPath)
+
+    // スパンの前にアイコンを挿入
+    button.insertBefore(openFolderSvg, span)
+    button.insertBefore(closedFolderSvg, openFolderSvg)
+
+    // フォルダーの状態に応じてアイコンを切り替える
+    const updateFolderIcon = () => {
+      const isOpen = folderOuter.classList.contains("open")
+      closedFolderSvg.style.display = isOpen ? "none" : "block"
+      openFolderSvg.style.display = isOpen ? "block" : "none"
+    }
+
+    // 初期状態の設定
+    updateFolderIcon()
+
+    // フォルダーの開閉状態が変更されたときにアイコンを更新
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === "attributes" && mutation.attributeName === "class") {
+          updateFolderIcon()
+        }
+      })
+    })
+
+    observer.observe(folderOuter, { attributes: true })
+    window.addCleanup(() => observer.disconnect())
   }
 
   // if the saved state is collapsed or the default state is collapsed
