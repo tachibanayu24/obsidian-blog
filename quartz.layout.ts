@@ -104,7 +104,7 @@ export const defaultContentPageLayout: PageLayout = {
       }),
     ),
     Component.Explorer({
-      folderDefaultState: "open",
+      folderDefaultState: "collapsed",
     }),
   ],
   right: [
@@ -164,7 +164,7 @@ export const defaultListPageLayout: PageLayout = {
       }),
     ),
     Component.Explorer({
-      folderDefaultState: "open",
+      folderDefaultState: "collapsed",
     }),
   ],
   right: [],
