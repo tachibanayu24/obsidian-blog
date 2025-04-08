@@ -35,17 +35,27 @@ function toggleFolder(evt: MouseEvent) {
   const target = evt.target as MaybeHTMLElement
   if (!target) return
 
-  // Check if target was svg icon or button
-  const isSvg = target.nodeName === "svg"
+  // Check if target was svg or path or other icon-related element
+  const isSvg = target.nodeName === "svg" || target.nodeName === "path" || target.classList.contains("folder-closed") || target.classList.contains("folder-open")
 
-  // corresponding <ul> element relative to clicked button/folder
-  const folderContainer = (
-    isSvg
-      ? // svg -> div.folder-container
-        target.parentElement
-      : // button.folder-button -> div -> div.folder-container
-        target.parentElement?.parentElement
-  ) as MaybeHTMLElement
+  // Find the folder-container ancestor regardless of what was clicked
+  let folderContainer: HTMLElement | null = null
+
+  if (isSvg) {
+    // Navigate up the DOM tree to find folder-container
+    let el: HTMLElement | null = target as HTMLElement
+    while (el && !folderContainer) {
+      if (el.classList?.contains("folder-container")) {
+        folderContainer = el
+      } else {
+        el = el.parentElement
+      }
+    }
+  } else {
+    // Traditional approach for button clicks
+    folderContainer = target.parentElement?.parentElement as HTMLElement
+  }
+
   if (!folderContainer) return
   const childFolderContainer = folderContainer.nextElementSibling as MaybeHTMLElement
   if (!childFolderContainer) return
@@ -139,6 +149,7 @@ function createFolderNode(
     a.style.alignItems = "center"
     a.style.gap = "2px"
     a.style.fontWeight = "bold"
+    a.style.fontSize = "1.2rem"
 
     // 閉じているフォルダーのSVG
     const closedFolderSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
@@ -148,11 +159,14 @@ function createFolderNode(
     closedFolderSvg.setAttribute("width", "20px")
     closedFolderSvg.setAttribute("fill", "#8b7355")
     closedFolderSvg.classList.add("folder-closed")
+    closedFolderSvg.style.flexShrink = "0"
+    closedFolderSvg.style.cursor = "pointer"
+    closedFolderSvg.style.pointerEvents = "all"
 
     const closedPath = document.createElementNS("http://www.w3.org/2000/svg", "path")
     closedPath.setAttribute("d", "M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z")
+    closedPath.style.pointerEvents = "none"
     closedFolderSvg.appendChild(closedPath)
-    closedFolderSvg.style.flexShrink = "0"
 
     // 開いているフォルダーのSVG
     const openFolderSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
@@ -164,8 +178,12 @@ function createFolderNode(
     openFolderSvg.classList.add("folder-open")
     openFolderSvg.style.display = "none"
     openFolderSvg.style.flexShrink = "0"
+    openFolderSvg.style.cursor = "pointer"
+    openFolderSvg.style.pointerEvents = "all"
+
     const openPath = document.createElementNS("http://www.w3.org/2000/svg", "path")
     openPath.setAttribute("d", "M168-192q-32 0-52-21.16t-20-50.88v-432.24Q96-726 116-747t52-21h216l96 96h313q31 0 50.5 21t21.5 51H451l-96-96H168v432l78-264h690l-85 285q-8 23-21 37t-38 14H168Zm75-72h538l59-192H300l-57 192Zm0 0 57-192-57 192Zm-75-336v-96 96Z")
+    openPath.style.pointerEvents = "none"
     openFolderSvg.appendChild(openPath)
 
     a.appendChild(closedFolderSvg)
@@ -183,6 +201,43 @@ function createFolderNode(
 
     // 初期状態の設定
     updateFolderIcon()
+
+    // SVGアイコンに直接クリックイベントを設定
+    const svgClickHandler = (e: MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      folderOuter.classList.toggle("open");
+      updateFolderIcon();
+
+      // Collapse folder container
+      const isCollapsed = !folderOuter.classList.contains("open")
+      setFolderState(folderOuter, isCollapsed)
+
+      // State管理の更新
+      const currentFolderState = currentExplorerState.find(
+        (item) => item.path === folderContainer.dataset.folderpath,
+      )
+      if (currentFolderState) {
+        currentFolderState.collapsed = isCollapsed
+      } else {
+        currentExplorerState.push({
+          path: folderContainer.dataset.folderpath as FullSlug,
+          collapsed: isCollapsed,
+        })
+      }
+
+      const stringifiedFileTree = JSON.stringify(currentExplorerState)
+      localStorage.setItem("fileTree", stringifiedFileTree)
+    };
+
+    closedFolderSvg.addEventListener("click", svgClickHandler);
+    openFolderSvg.addEventListener("click", svgClickHandler);
+
+    // クリーンアップ
+    window.addCleanup(() => {
+      closedFolderSvg.removeEventListener("click", svgClickHandler);
+      openFolderSvg.removeEventListener("click", svgClickHandler);
+    });
 
     // フォルダーの開閉状態が変更されたときにアイコンを更新
     const observer = new MutationObserver((mutations) => {
@@ -218,9 +273,12 @@ function createFolderNode(
     closedFolderSvg.setAttribute("fill", "#8b7355")
     closedFolderSvg.classList.add("folder-closed")
     closedFolderSvg.style.flexShrink = "0"
+    closedFolderSvg.style.cursor = "pointer"
+    closedFolderSvg.style.pointerEvents = "all"
 
     const closedPath = document.createElementNS("http://www.w3.org/2000/svg", "path")
     closedPath.setAttribute("d", "M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z")
+    closedPath.style.pointerEvents = "none"
     closedFolderSvg.appendChild(closedPath)
 
     // 開いているフォルダーのSVG
@@ -233,9 +291,12 @@ function createFolderNode(
     openFolderSvg.classList.add("folder-open")
     openFolderSvg.style.display = "none"
     openFolderSvg.style.flexShrink = "0"
+    openFolderSvg.style.cursor = "pointer"
+    openFolderSvg.style.pointerEvents = "all"
 
     const openPath = document.createElementNS("http://www.w3.org/2000/svg", "path")
     openPath.setAttribute("d", "M168-192q-32 0-52-21.16t-20-50.88v-432.24Q96-726 116-747t52-21h216l96 96h313q31 0 50.5 21t21.5 51H451l-96-96H168v432l78-264h690l-85 285q-8 23-21 37t-38 14H168Zm75-72h538l59-192H300l-57 192Zm0 0 57-192-57 192Zm-75-336v-96 96Z")
+    openPath.style.pointerEvents = "none"
     openFolderSvg.appendChild(openPath)
 
     // スパンの前にアイコンを挿入
@@ -251,6 +312,43 @@ function createFolderNode(
 
     // 初期状態の設定
     updateFolderIcon()
+
+    // SVGアイコンに直接クリックイベントを設定
+    const svgClickHandler = (e: MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      folderOuter.classList.toggle("open");
+      updateFolderIcon();
+
+      // Collapse folder container
+      const isCollapsed = !folderOuter.classList.contains("open")
+      setFolderState(folderOuter, isCollapsed)
+
+      // State管理の更新
+      const currentFolderState = currentExplorerState.find(
+        (item) => item.path === folderContainer.dataset.folderpath,
+      )
+      if (currentFolderState) {
+        currentFolderState.collapsed = isCollapsed
+      } else {
+        currentExplorerState.push({
+          path: folderContainer.dataset.folderpath as FullSlug,
+          collapsed: isCollapsed,
+        })
+      }
+
+      const stringifiedFileTree = JSON.stringify(currentExplorerState)
+      localStorage.setItem("fileTree", stringifiedFileTree)
+    };
+
+    closedFolderSvg.addEventListener("click", svgClickHandler);
+    openFolderSvg.addEventListener("click", svgClickHandler);
+
+    // クリーンアップ
+    window.addCleanup(() => {
+      closedFolderSvg.removeEventListener("click", svgClickHandler);
+      openFolderSvg.removeEventListener("click", svgClickHandler);
+    });
 
     // フォルダーの開閉状態が変更されたときにアイコンを更新
     const observer = new MutationObserver((mutations) => {
