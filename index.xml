@@ -6,7 +6,7 @@
       <description>最新の10件 on ほこりログ</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>ブラウザベースのAI統合開発環境 `Firebase Studio` を触ってみる</title>
+    <title>ブラウザベースのAI統合開発環境 Firebase Studio を触ってみる</title>
     <link>https://blog.tachibanayu24.com/dev/firebase-studio-testplay</link>
     <guid>https://blog.tachibanayu24.com/dev/firebase-studio-testplay</guid>
     <description>2025/4/9、Firebase Studioのプレビュー版がローンチされました。 早速触ってみたので感想など書いていきます。 Firebase Studioとは？ Introducing Firebase Studio で詳しく紹介されています。 主な機能 自然言語からのプロトタイプ作成 プロンプト、画像、図面からネイティブアプリやWebアプリケーションを構築 Gemini APIキーは対話的に作成して設定できる AIチャットによる迅速な反復 Gemini in Firebaseとのチャットで、ユーザー認証の追加、レイアウト変更、UI改善などを実現 コードベースを理解した上で自然言語の指示...</description>
