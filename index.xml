@@ -6,6 +6,12 @@
       <description>最新の10件 on ほこりログ</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>ちいぽけにおける数字の扱い方に関する考察</title>
+    <link>https://blog.tachibanayu24.com/misc/chiipoke-number-scale</link>
+    <guid>https://blog.tachibanayu24.com/misc/chiipoke-number-scale</guid>
+    <description>ちいかわぽけっと（ちいぽけ）がサイバーエージェントグループの applibot社からリリースされました。 スマホのゲームはあんまりやらないのですが、初めてのちいかわのちゃんとしたスマホゲームということでちょっとプレイしているのですが、数字の扱い方がヤバすぎるのでどうなっているのか少し考えてみようと思います。 単位の表記 出典: ちいかわぽけっと 画面上に o とか h とかのアルファベットがありますが、これは桁数を表現しています。 ちいぽけにおける所持金や攻撃力、体力などのパラメータは非線形に急激に増加していき、 k = 10^3 とかではなく、 a = 10^3, b=10^6, c=10^...</description>
+    <pubDate>Sun, 13 Apr 2025 00:00:00 GMT</pubDate>
+  </item><item>
     <title>ブラウザベースのAI統合開発環境 Firebase Studio を触ってみる</title>
     <link>https://blog.tachibanayu24.com/dev/firebase-studio-testplay</link>
     <guid>https://blog.tachibanayu24.com/dev/firebase-studio-testplay</guid>
