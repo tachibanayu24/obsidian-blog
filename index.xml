@@ -7,8 +7,8 @@
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
     <title>GPT-4.1をCursorのAgent Modeで使ってみる</title>
-    <link>https://blog.tachibanayu24.com/dev/vive-coding-with-gpt-4_1</link>
-    <guid>https://blog.tachibanayu24.com/dev/vive-coding-with-gpt-4_1</guid>
+    <link>https://blog.tachibanayu24.com/dev/vibe-coding-with-gpt-4_1</link>
+    <guid>https://blog.tachibanayu24.com/dev/vibe-coding-with-gpt-4_1</guid>
     <description>OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 プロンプト旅行の持ち物リストを管理す...</description>
     <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
   </item><item>
