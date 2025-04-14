@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja"><head><title>GPT-4.1をCursorのAgent Modeで使ってみる | ほこりログ</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M PLUS Rounded 1c:wght@400;700&amp;family=M PLUS Rounded 1c:ital,wght@0,400;0,600;1,400;1,600&amp;family=JetBrains Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="ほこりログ"/><meta property="og:title" content="GPT-4.1をCursorのAgent Modeで使ってみる | ほこりログ"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="GPT-4.1をCursorのAgent Modeで使ってみる | ほこりログ"/><meta name="twitter:description" content="OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 prompt旅行の持ち物リストを管理..."/><meta property="og:description" content="OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 prompt旅行の持ち物リストを管理..."/><meta property="og:image:alt" content="OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 prompt旅行の持ち物リストを管理..."/><meta property="twitter:domain" content="blog.tachibanayu24.com"/><meta property="og:url" content="https://blog.tachibanayu24.com/dev/vive-coding-with-gpt-4_1"/><meta property="twitter:url" content="https://blog.tachibanayu24.com/dev/vive-coding-with-gpt-4_1"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 prompt旅行の持ち物リストを管理..."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><style>.expand-button {
+<html lang="ja"><head><title>GPT-4.1をCursorのAgent Modeで使ってみる | ほこりログ</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M PLUS Rounded 1c:wght@400;700&amp;family=M PLUS Rounded 1c:ital,wght@0,400;0,600;1,400;1,600&amp;family=JetBrains Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="ほこりログ"/><meta property="og:title" content="GPT-4.1をCursorのAgent Modeで使ってみる | ほこりログ"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="GPT-4.1をCursorのAgent Modeで使ってみる | ほこりログ"/><meta name="twitter:description" content="OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 プロンプト旅行の持ち物リストを管理す..."/><meta property="og:description" content="OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 プロンプト旅行の持ち物リストを管理す..."/><meta property="og:image:alt" content="OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 プロンプト旅行の持ち物リストを管理す..."/><meta property="twitter:domain" content="blog.tachibanayu24.com"/><meta property="og:url" content="https://blog.tachibanayu24.com/dev/vive-coding-with-gpt-4_1"/><meta property="twitter:url" content="https://blog.tachibanayu24.com/dev/vive-coding-with-gpt-4_1"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 プロンプト旅行の持ち物リストを管理す..."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><style>.expand-button {
   position: absolute;
   display: flex;
   float: right;
@@ -122,7 +122,7 @@ pre:hover > .expand-button {
 <h2 id="対話1-とりあえず作り切らせる">対話1: とりあえず作り切らせる<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#対話1-とりあえず作り切らせる" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
 <p>ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。</p>
 <p>以下のプロンプトから開始します。</p>
-<figure data-rehype-pretty-code-figure><figcaption data-rehype-pretty-code-title data-language="txt" data-theme="github-light github-dark">prompt</figcaption><pre tabindex="0" data-language="txt" data-theme="github-light github-dark"><code data-language="txt" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>旅行の持ち物リストを管理するアプリケーションを作ってみて。とりあえず最後まで作り切ってみて。</span></span>
+<figure data-rehype-pretty-code-figure><figcaption data-rehype-pretty-code-title data-language="txt" data-theme="github-light github-dark">プロンプト</figcaption><pre tabindex="0" data-language="txt" data-theme="github-light github-dark"><code data-language="txt" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>旅行の持ち物リストを管理するアプリケーションを作ってみて。とりあえず最後まで作り切ってみて。</span></span>
 <span data-line><span>  </span></span>
 <span data-line><span>- ログイン機能は不要  </span></span>
 <span data-line><span>- ユーザーは持ち物の追加、削除、編集ができる  </span></span>
@@ -134,49 +134,46 @@ pre:hover > .expand-button {
 <p><img src="../Screenshot-2025-04-15-at-5.03.21.png" width="auto" height="auto" alt/></p>
 <p><code>npm create vite@latest . -- --template react-ts</code> でプロジェクトを開始した際に作成された <code>index.css</code> により color-schema が dark になっており、そのせいで見づらいようです。</p>
 <p>しかしちゃんとデータの永続化はできていますね。（画像の入力値はこちらで入れたもの）</p>
-<pre><code>> すべてのテーブルの中身を標準出力して
-
-全テーブル（items, templates, template_items）の中身は以下の通りです。
-
----
-
-### items テーブル
-
-| id | name | packed |
-|----|-----------|--------|
-| 3 | test | 0 |
-| 4 | hogehoge | 0 |
-
-### templates テーブル
-
-| id | name |
-|----|----------------|
-| 1 | testとhogehoge |
-
-### template_items テーブル
-
-| template_id | name | packed |
-|-------------|-----------|--------|
-| 1 | test | 0 |
-| 1 | hogehoge | 0 |
-
-</code></pre>
+<figure data-rehype-pretty-code-figure><figcaption data-rehype-pretty-code-title data-language="txt" data-theme="github-light github-dark">プロンプト</figcaption><pre tabindex="0" data-language="txt" data-theme="github-light github-dark"><code data-language="txt" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>> すべてのテーブルの中身を標準出力して</span></span>
+<span data-line> </span>
+<span data-line><span>全テーブル（items, templates, template_items）の中身は以下の通りです。</span></span>
+<span data-line> </span>
+<span data-line><span>---</span></span>
+<span data-line> </span>
+<span data-line><span>### items テーブル</span></span>
+<span data-line> </span>
+<span data-line><span>| id | name | packed |</span></span>
+<span data-line><span>|----|-----------|--------|</span></span>
+<span data-line><span>| 3 | test | 0 |</span></span>
+<span data-line><span>| 4 | hogehoge | 0 |</span></span>
+<span data-line> </span>
+<span data-line><span>### templates テーブル</span></span>
+<span data-line> </span>
+<span data-line><span>| id | name |</span></span>
+<span data-line><span>|----|----------------|</span></span>
+<span data-line><span>| 1 | testとhogehoge |</span></span>
+<span data-line> </span>
+<span data-line><span>### template_items テーブル</span></span>
+<span data-line> </span>
+<span data-line><span>| template_id | name | packed |</span></span>
+<span data-line><span>|-------------|-----------|--------|</span></span>
+<span data-line><span>| 1 | test | 0 |</span></span>
+<span data-line><span>| 1 | hogehoge | 0 |</span></span>
+<span data-line> </span></code></pre></figure>
 <h2 id="対話2-ブラッシュアップする">対話2: ブラッシュアップする<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#対話2-ブラッシュアップする" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
-<pre><code>ちゃんと動いているようです。以下についてブラッシュアップしてください。  
-  
-- create viteしたときに生成された余計なファイルが残っています
-	- 不要なものは消してください
-	- 特に、index.cssが影響して、OSがダークモードのユーザーは視認性がとても悪いです  
-- UIがダサすぎるのでもっとモダンなwebサービスっぽくして  
-- タイトルをもっといい感じに考えて
-</code></pre>
+<figure data-rehype-pretty-code-figure><figcaption data-rehype-pretty-code-title data-language="txt" data-theme="github-light github-dark">プロンプト</figcaption><pre tabindex="0" data-language="txt" data-theme="github-light github-dark"><code data-language="txt" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>ちゃんと動いているようです。以下についてブラッシュアップしてください。  </span></span>
+<span data-line><span>  </span></span>
+<span data-line><span>- create viteしたときに生成された余計なファイルが残っています</span></span>
+<span data-line><span>	- 不要なものは消してください</span></span>
+<span data-line><span>	- 特に、index.cssが影響して、OSがダークモードのユーザーは視認性がとても悪いです  </span></span>
+<span data-line><span>- UIがダサすぎるのでもっとモダンなwebサービスっぽくして  </span></span>
+<span data-line><span>- タイトルをもっといい感じに考えて</span></span></code></pre></figure>
 <p>結果が以下の通り。割と良いのではないでしょうか？</p>
 <p><video src="../Apr-15-2025-05-19-03.mp4" controls></video></p>
 <h2 id="対話3-ちょっとだけ難しそうなことを言ってみる">対話3: ちょっとだけ難しそうなことを言ってみる<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#対話3-ちょっとだけ難しそうなことを言ってみる" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
 <p>限定的なコンテキストしか持たないのでしょうがないんですが、他のシステムに依存するとうまくいかないことが多いので、geminiのAPIを利用するように促してみます。</p>
-<pre><code>backend/.env に、 GEMINI_API_KEY という命名でgeminiのAPIキーを追加しました。  
-これで、行き先と泊数を入力したら、持ち物リストを提案してくれて、それを編集して適用できるような機能を追加してください。
-</code></pre>
+<figure data-rehype-pretty-code-figure><figcaption data-rehype-pretty-code-title data-language="txt" data-theme="github-light github-dark">プロンプト</figcaption><pre tabindex="0" data-language="txt" data-theme="github-light github-dark"><code data-language="txt" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>backend/.env に、 GEMINI_API_KEY という命名でgeminiのAPIキーを追加しました。  </span></span>
+<span data-line><span>これで、行き先と泊数を入力したら、持ち物リストを提案してくれて、それを編集して適用できるような機能を追加してください。</span></span></code></pre></figure>
 <p>結果は以下。404が帰ってきています。エラーハンドリングはしているようですが、エラーの詳細が標準出力されるようになっていないです。しょうがないのでエラー内容を送信してデバッグを試みます。
 <img src="../Screenshot-2025-04-15-at-5.27.26.png" width="auto" height="auto" alt/></p>
 <p>デバッグのやり取りは何往復もしたので載せませんが。。</p>
