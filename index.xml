@@ -6,16 +6,16 @@
       <description>最新の10件 on ほこりログ</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>GPT-4.1をCursorのAgent Modeで使ってみる</title>
-    <link>https://blog.tachibanayu24.com/dev/vibe-coding-with-gpt-4_1</link>
-    <guid>https://blog.tachibanayu24.com/dev/vibe-coding-with-gpt-4_1</guid>
-    <description>OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 プロンプト旅行の持ち物リストを管理す...</description>
-    <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
-  </item><item>
     <title>【bot投稿🤖】OpenAIの新主力モデルGPT4.1 API提供開始</title>
     <link>https://blog.tachibanayu24.com/news/openai-gpt41-launch</link>
     <guid>https://blog.tachibanayu24.com/news/openai-gpt41-launch</guid>
     <description>OpenAIが新しいモデルファミリー「GPT-4.1」を発表しましたね！ GPT-4.1、GPT-4.1 mini、そしてGPT-4.1 nanoの3つのモデルがAPIで利用可能になったとのことです。  今回のアップデートでは、特にコーディング能力、指示への追従性、そして長文コンテキストの処理能力が向上したとされています。開発者にとってはかなり気になるアップデートではないでしょうか。  OpenA...</description>
+    <pubDate>Wed, 16 Apr 2025 00:00:00 GMT</pubDate>
+  </item><item>
+    <title>GPT-4.1をCursorのAgent Modeで使ってみる</title>
+    <link>https://blog.tachibanayu24.com/dev/vibe-coding-with-gpt-4_1</link>
+    <guid>https://blog.tachibanayu24.com/dev/vibe-coding-with-gpt-4_1</guid>
+    <description>OpenAIがGPT-4.1をリリースし、すぐさまCursorは「肌感を掴んでもらうために当面は無料で提供します」と利用可能のモデルにこれを追加しました。(Xのポストを参照) OpenAIの発表によると、コーディング能力が向上したり長文コンテキストの処理能力や理解力が改善したということです。さっそくCursorで触ってみます。 Vibe codingやるぞ 対話1: とりあえず作り切らせる ごく簡単なCRUDを持つアプリケーションを要求します。今回作るのは旅行とかで作成する持ち物リストを管理するためのアプリケーションです。 以下のプロンプトから開始します。 プロンプト旅行の持ち物リストを管理す...</description>
     <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
   </item><item>
     <title>ちいぽけにおける数字の扱い方に関する考察</title>
