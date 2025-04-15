@@ -1,6 +1,8 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
+const environment = process.env.NODE_ENV
+
 /**
  * Quartz 4 Configuration
  *
@@ -24,9 +26,18 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "M PLUS Rounded 1c",
-        body: "M PLUS Rounded 1c",
-        code: "JetBrains Mono",
+        header: {
+          name: "M PLUS Rounded 1c",
+          weights: [400, 500, 700],
+        },
+        body: {
+          name: "M PLUS Rounded 1c",
+          weights: [400, 500, 700],
+        },
+        code: {
+          name: "JetBrains Mono",
+          weights: [400, 500, 700],
+        },
       },
       colors: {
         lightMode: {
@@ -74,7 +85,7 @@ const config: QuartzConfig = {
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
     ],
-    filters: [Plugin.RemoveDrafts()],
+    filters: environment === "localhost" ? [] : [Plugin.RemoveDrafts()],
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
