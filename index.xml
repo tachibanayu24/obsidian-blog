@@ -9,7 +9,7 @@
     <title>全自動でブログの記事を生成して公開するようにしてみるテスト</title>
     <link>https://blog.tachibanayu24.com/dev/auto-article-publisher</link>
     <guid>https://blog.tachibanayu24.com/dev/auto-article-publisher</guid>
-    <description>生成AI周りの活況や趨勢の変化がすごく、情報のキャッチアップがだいぶしんどいですよね。私は技術者ですが、役割上ビジネス的なユースケース・プロダクトにもついていかないといけないのでなかなか大変になってきました。 そこで、平凡な発送ですが、信頼できる情報ソースと思うメディアのRSSを監視し、更新されたら自動でLMMに記事化させ、せっかくなのでこのブログにpublishするbotを実装して放流してみました。 実際にbotにより投稿された記事は今のところ以下の２つです。 【bot投稿🤖】OpenAIの新主力モデルGPT4.1 API提供開始 | ほこりログ 【bot投稿🤖】最新AIニュース Veo...</description>
+    <description>ここ数ヶ月はずっと生成AI周りの活況や趨勢の変化がすごく、情報のキャッチアップがだいぶしんどいですよね。私は技術者ですが、役割上ビジネス的なユースケース・プロダクトにもついていかないといけないのでなかなか大変になってきました。 そこで、平凡な発送ですが、信頼できる情報ソースと思うメディアのRSSを監視し、更新されたら自動でLMMに記事化させ、せっかくなのでこのブログにpublishするbotを実装して放流してみました。 実際にbotにより投稿された記事は今のところ以下の２つです。 【bot投稿🤖】OpenAIの新主力モデルGPT4.1 API提供開始 | ほこりログ 【bot投稿🤖】最新A...</description>
     <pubDate>Wed, 16 Apr 2025 00:00:00 GMT</pubDate>
   </item><item>
     <title>【bot投稿🤖】最新AIニュース Veo 2とKling 2が一般公開 GPT-4.1も</title>
