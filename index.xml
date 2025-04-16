@@ -12,12 +12,6 @@
     <description>ここ数ヶ月はずっと、生成AI周りの活況や趨勢の変化がすごく、情報のキャッチアップがだいぶしんどいですよね。私は技術者ですが、役割上ビジネス的なユースケース・プロダクトにもついていかないといけないのでなかなか大変になってきました。 そこで、平凡な発想ですが、信頼できる情報ソースと思うメディアのRSSを監視し、更新されたら自動でLMMに記事化させ、せっかくなのでこのブログにpublishするbotを実装して放流してみました。 実際にbotにより投稿された記事は今のところ以下の２つです。 【bot投稿🤖】OpenAIの新主力モデルGPT4.1 API提供開始 | ほこりログ 【bot投稿🤖】最新...</description>
     <pubDate>Wed, 16 Apr 2025 17:00:00 GMT</pubDate>
   </item><item>
-    <title>Untitled 1</title>
-    <link>https://blog.tachibanayu24.com/Untitled-1</link>
-    <guid>https://blog.tachibanayu24.com/Untitled-1</guid>
-    <description></description>
-    <pubDate>Wed, 16 Apr 2025 08:21:15 GMT</pubDate>
-  </item><item>
     <title>【bot投稿🤖】最新AIニュース Veo 2とKling 2が一般公開 GPT-4.1も</title>
     <link>https://blog.tachibanayu24.com/news/ai_news_veo2_kling2</link>
     <guid>https://blog.tachibanayu24.com/news/ai_news_veo2_kling2</guid>
@@ -64,6 +58,12 @@
     <link>https://blog.tachibanayu24.com/finance/2025-04-06-%E7%B1%B3%E5%9B%BD%E6%A0%AA%E3%81%AE%E7%8F%BE%E5%9C%A8%E5%9C%B0%E3%81%AE%E7%A2%BA%E8%AA%8D</link>
     <guid>https://blog.tachibanayu24.com/finance/2025-04-06-%E7%B1%B3%E5%9B%BD%E6%A0%AA%E3%81%AE%E7%8F%BE%E5%9C%A8%E5%9C%B0%E3%81%AE%E7%A2%BA%E8%AA%8D</guid>
     <description>値動きが激しいので現在の米国株（S&amp;P500）の状況を確認します。 あんまりこの手の話題で自分の意見を書くのもどうかなと思うので、客観的な事実だけをまとめます。（市場の予想は一切しません） 最近の主な出来事 トランプ氏、相互関税を発表 最大50％で日本は24％ - BBCニュース AIによる要約 トランプ米大統領が全輸入品への新関税計画を発表。10%基本税に加え、「最悪の違反者」に追加関税。日本には24%が課される。中国やEUにも高関税。「経済的独立宣言」とし、世界経済への影響が懸念されている。 中国が報復関税を発表、米株式市場はパンデミック以来の大幅安に - BBCニュース AIによ...</description>
+    <pubDate>Sun, 06 Apr 2025 00:00:00 GMT</pubDate>
+  </item><item>
+    <title>TOP</title>
+    <link>https://blog.tachibanayu24.com/</link>
+    <guid>https://blog.tachibanayu24.com/</guid>
+    <description>たちばなゆうとのブログです。</description>
     <pubDate>Sun, 06 Apr 2025 00:00:00 GMT</pubDate>
   </item>
     </channel>
