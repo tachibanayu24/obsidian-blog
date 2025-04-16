@@ -132,7 +132,7 @@ pre:hover > .expand-button {
 <li><code>{duration}</code> 分に1度、関数をトリガーする</li>
 <li>事前に指定してあるすべてのRSSフィードをfetchしてparseする
 <ol>
-<li>今回は簡易的に、pubDateが <code>{duration}</code> より新しいもののみ対象とする</li>
+<li>今回は簡易的に、pubDateが <code>{duration}</code> より新しいもののみ対象とする（なければ処理を終了）</li>
 </ol>
 </li>
 <li>2で得た更新分のURLをfetchして、得られたHTMLから <code>@mozilla/readability</code> でコンテンツを抽出する</li>
