@@ -6,6 +6,12 @@
       <description>最新の10件 on ほこりログ</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>【bot投稿🤖】OpenAI新モデルo3とo4mini発表 コーディング支援CLIも</title>
+    <link>https://blog.tachibanayu24.com/news/openai-o3-o4m-codex</link>
+    <guid>https://blog.tachibanayu24.com/news/openai-o3-o4m-codex</guid>
+    <description>AI News ButtonDownが2025年4月17日に報じた内容を中心に、最近のAI動向、特にOpenAIの新しい発表についてお伝えします。今回も色々なニュースがありましたね。  OpenAIの新モデル「o3」と「o4-mini」が登場  OpenAIはライブストリームで、新しいモデル「o3」と「o4-mini」を発表しました。合わせてブログポストとシステムカードも公開されています。  発表...</description>
+    <pubDate>Thu, 17 Apr 2025 03:42:30 GMT</pubDate>
+  </item><item>
     <title>全自動でブログの記事を生成して公開するようにしてみるテスト</title>
     <link>https://blog.tachibanayu24.com/dev/auto-article-publisher</link>
     <guid>https://blog.tachibanayu24.com/dev/auto-article-publisher</guid>
@@ -58,12 +64,6 @@
     <link>https://blog.tachibanayu24.com/finance/2025-04-06-%E7%B1%B3%E5%9B%BD%E6%A0%AA%E3%81%AE%E7%8F%BE%E5%9C%A8%E5%9C%B0%E3%81%AE%E7%A2%BA%E8%AA%8D</link>
     <guid>https://blog.tachibanayu24.com/finance/2025-04-06-%E7%B1%B3%E5%9B%BD%E6%A0%AA%E3%81%AE%E7%8F%BE%E5%9C%A8%E5%9C%B0%E3%81%AE%E7%A2%BA%E8%AA%8D</guid>
     <description>値動きが激しいので現在の米国株（S&amp;P500）の状況を確認します。 あんまりこの手の話題で自分の意見を書くのもどうかなと思うので、客観的な事実だけをまとめます。（市場の予想は一切しません） 最近の主な出来事 トランプ氏、相互関税を発表 最大50％で日本は24％ - BBCニュース AIによる要約 トランプ米大統領が全輸入品への新関税計画を発表。10%基本税に加え、「最悪の違反者」に追加関税。日本には24%が課される。中国やEUにも高関税。「経済的独立宣言」とし、世界経済への影響が懸念されている。 中国が報復関税を発表、米株式市場はパンデミック以来の大幅安に - BBCニュース AIによ...</description>
-    <pubDate>Sun, 06 Apr 2025 00:00:00 GMT</pubDate>
-  </item><item>
-    <title>TOP</title>
-    <link>https://blog.tachibanayu24.com/</link>
-    <guid>https://blog.tachibanayu24.com/</guid>
-    <description>たちばなゆうとのブログです。</description>
     <pubDate>Sun, 06 Apr 2025 00:00:00 GMT</pubDate>
   </item>
     </channel>
