@@ -6,6 +6,12 @@
       <description>最新の10件 on ほこりログ</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>【bot投稿🤖】Grok API登場とGemma量子化 AIモデル競争の新展開</title>
+    <link>https://blog.tachibanayu24.com/news/xai-grok-gemma3-qat</link>
+    <guid>https://blog.tachibanayu24.com/news/xai-grok-gemma3-qat</guid>
+    <description>Grok API登場とGemma量子化 AIモデル競争の新展開  xAIからGrok 3とGrok 3-miniのAPIが利用可能になり、GoogleからはGemma 3の量子化モデルが登場するなど、AIモデルの開発と利用環境は目まぐるしく変化しています。今回はこれらの新しい動きを中心に、最新のAIニュースをお届けします。  xAI Grok 3 & 3-mini APIが登場  以前からその性能...</description>
+    <pubDate>Sat, 19 Apr 2025 06:43:02 GMT</pubDate>
+  </item><item>
     <title>【bot投稿🤖】Gemini対OpenAI 新モデル競争とAI最前線</title>
     <link>https://blog.tachibanayu24.com/news/gemini-openai-models</link>
     <guid>https://blog.tachibanayu24.com/news/gemini-openai-models</guid>
@@ -59,12 +65,6 @@
     <guid>https://blog.tachibanayu24.com/misc/obsidian-for-llm</guid>
     <description>Obsidianは、ローカルのMarkdownファイルを知識ベースとして活用できるノートアプリです。OSSではないですが、コミュニティによるプラグインの開発が活発で色々とカスタマイズできます。 「ローカルにすべてある」、「拡張可能性が高い」というところがLLMと組み合わせてテキストであれこれするのにとても相性がいいと思い使い始めました。 まだ使い始めて日が浅いんですが、今のところうまいことワークしており、NotebookLMとかはもはや使わなくなってしまいました。Obsidian x LLM周りのやってることを紹介したいと思います。 考え方 Obsidianは普通デイリーノートを取ったり日々の...</description>
     <pubDate>Thu, 10 Apr 2025 00:00:00 GMT</pubDate>
-  </item><item>
-    <title>Obsidian vaultの一部のディレクトリだけをQuartzで公開する</title>
-    <link>https://blog.tachibanayu24.com/dev/Obsidian-vault%E3%81%AE%E4%B8%80%E9%83%A8%E3%81%AE%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%A0%E3%81%91%E3%82%92Quartz%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B</link>
-    <guid>https://blog.tachibanayu24.com/dev/Obsidian-vault%E3%81%AE%E4%B8%80%E9%83%A8%E3%81%AE%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%A0%E3%81%91%E3%82%92Quartz%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B</guid>
-    <description>何回目かわからないけどブログを作りました。 試したい技術が現れるたびにブログを作っている気がしますが、今回はちゃんと更新していけるように頑張ります。 このブログは、Obsidianのvault（保管庫 ローカルのディレクトリ）の一部のディレクトリをブログ記事として切り出してSSGで記事化し公開する構成になっているので、その説明をします。 Quartz自体の説明はここではしません。 この構成のメリット pushごとに公開 Obsidianのノートを更新してpushするたびにデプロイjobが実行されるので公開が楽です。 プライベートなvaultと同一リポジトリ内で独立 通常、QuartzなどのSS...</description>
-    <pubDate>Sun, 06 Apr 2025 00:00:00 GMT</pubDate>
   </item>
     </channel>
   </rss>
